@@ -1,0 +1,13 @@
+{
+    "pages": [
+        "pages/index/main",
+        "pages/first/main"  
+    ],
+        "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "MapleStroy工具",
+      "navigationBarTextStyle": "black"
+    },
+    "cloud": true 
+}
