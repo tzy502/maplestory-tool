@@ -4,13 +4,36 @@
       <div class="litter_bule"></div>
       <p class="first_content">第一步，请根据角色面板填写以下属性</p>
     </div>
+
     <div class="pannle">
+      <div class="enter">
+        <p class="enter_title">角色名:</p>
+        <input type="text" class="enter_input" v-model="name" placeholder="请输入角色名" />
+      </div>
+      <div class="enter">
+        <p class="enter_title">武器类型:</p>
+        <input
+          v-model="job"
+          disabled="disabled"
+          class="enter_input"
+          @click="showPicker"
+          placeholder="请选择所使用武器类型"
+        />
+        <input hidden v-model="value" />
+        <mpvue-picker
+          ref="mpvuePicker"
+          :mode="mode"
+          :pickerValueDefault="pickerValueDefault"
+          @onChange="onChange"
+          :pickerValueArray="pickerValueArray"
+        ></mpvue-picker>
+      </div>
       <div class="enter">
         <p class="enter_title">等级:</p>
         <input type="number" class="enter_input" v-model="level" placeholder="请输入数值" />
       </div>
       <div class="enter">
-        <p class="enter_title">神秘力量:</p>
+        <p class="enter_title">神秘力量(只填写神秘徽章给予的):</p>
         <input type="number" class="enter_input" v-model="arc" placeholder="请输入数值" />
       </div>
       <div class="enter">
@@ -40,7 +63,6 @@
     </div>
     <div class="next_box">
       <img src="/static/images/next.png" @click="next" class="next" background-size="cover" />
-  
     </div>
     <mptoast />
   </div>
@@ -48,23 +70,91 @@
 
 <script>
 import mptoast from "mptoast";
+import mpvuePicker from "mpvue-picker";
 export default {
   components: {
-    mptoast
+    mptoast,
+    mpvuePicker
+  },
+  mounted: function() {
+    this.name = wx.getStorageSync("name");
+    this.level = wx.getStorageSync("level");
+    this.arc = wx.getStorageSync("arc");
+    this.crit = wx.getStorageSync("crit");
+    this.critDamage = wx.getStorageSync("critDamage");
+    this.mapleWarrior = wx.getStorageSync("mapleWarrior");
+    this.superMain = wx.getStorageSync("superMain");
+    this.union = wx.getStorageSync("union");
+    this.union2 = wx.getStorageSync("union2");
+    this.job = wx.getStorageSync("job");
+    this.coefficient = wx.getStorageSync("coefficient");
+    this.value = wx.getStorageSync("value");
+    this.pickerValueDefault = [this.value];
   },
   data() {
     return {
+      mode: "selector",
+      pickerValueArray: [
+        {
+          label: "太刀（神之子-阿尔法）", //武器名字
+          coefficient: "1.3", //系数
+          value: 1 //下标
+        },
+        {
+          label: "枪（黑骑士）", //武器名字
+          coefficient: "1.3", //系数
+          value: 2
+        },
+        {
+          label: "双手剑（魂骑士，英雄）", //武器名字
+          coefficient: "1.3", //系数
+          value: 3
+        },
+        {
+          label: "双手钝器（圣骑士）", //武器名字
+          coefficient: "1.3", //系数
+          value: 4
+        }
+      ],
+      pickerValueDefault: [1],
+      name: "",
+      level: "",
+      arc: "",
+      crit: "",
+      critDamage: "",
+      mapleWarrior: "",
+      superMain: "",
+      union: "",
+      union2: "",
+      job: "",
+      coefficient: "",
+      value: ""
     };
-  }, 
+  },
 
   methods: {
+    showPicker() {
+      this.$refs.mpvuePicker.show();
+    },
+    onConfirm(e) {
+      console.log(e);
+    },
+    onChange(e) {
+      console.log(e.label);
+      this.job = e.label;
+      this.value = e.value;
+    },
+    onCancel(e) {
+      console.log(e);
+    },
     next() {
+      console.log(this.value);
       var level = this.level;
       if (level == null || level == "") {
         this.$mptoast("请填写等级", "error", "1");
         return;
       }
-       if (level >275 || level <=0) {
+      if (level > 275 || level <= 0) {
         this.$mptoast("请填写正确等级", "error", "1");
         return;
       }
@@ -76,15 +166,21 @@ export default {
         }
       });
       var arc = this.arc;
+
       if (arc == null || arc == "") {
+        console.log(arc);
         wx.setStorage({
           key: "arc",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存神秘成功");
           }
         });
       } else {
+        if (arc > 1320 || arc <= 0 || arc % 10 != 0) {
+          this.$mptoast("请填写正确的神秘力量", "error", "1");
+          return;
+        }
         wx.setStorage({
           key: "arc",
           data: arc,
@@ -97,7 +193,7 @@ export default {
       if (crit == null || crit == "") {
         wx.setStorage({
           key: "crit",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存暴击成功");
           }
@@ -115,7 +211,7 @@ export default {
       if (critDamage == null || critDamage == "") {
         wx.setStorage({
           key: "critDamage",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存爆伤成功");
           }
@@ -133,7 +229,7 @@ export default {
       if (mapleWarrior == null || mapleWarrior == "") {
         wx.setStorage({
           key: "mapleWarrior",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存勇士成功");
           }
@@ -152,7 +248,7 @@ export default {
       if (superMain == null || superMain == "") {
         wx.setStorage({
           key: "superMain",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存超级主属性成功");
           }
@@ -170,7 +266,7 @@ export default {
       if (union == null || union == "") {
         wx.setStorage({
           key: "union",
-          data: 0,
+          data: "",
           success: function(res) {
             console.log("异步保存联盟1成功");
           }
@@ -187,8 +283,8 @@ export default {
       var union2 = this.union2;
       if (union2 == null || union2 == "") {
         wx.setStorage({
-          key: "arc",
-          data: 0,
+          key: "union2",
+          data: "",
           success: function(res) {
             console.log("异步保存联盟成功");
           }
@@ -202,7 +298,81 @@ export default {
           }
         });
       }
-       mpvue.navigateTo({url: '../../pages/second/main'})
+      var job = this.job;
+      if (job == null || job == "") {
+        wx.setStorage({
+          key: "job",
+          data: "",
+          success: function(res) {
+            console.log("异步保存武器类型成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "job",
+          data: job,
+          success: function(res) {
+            console.log("异步保存武器类型成功");
+          }
+        });
+      }
+
+      var coefficient = this.coefficient;
+      if (coefficient == null || coefficient == "") {
+        wx.setStorage({
+          key: "coefficient",
+          data: "",
+          success: function(res) {
+            console.log("异步保存系数成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "coefficient",
+          data: coefficient,
+          success: function(res) {
+            console.log("异步保存系数成功");
+          }
+        });
+      }
+
+      var value = this.value;
+      if (value == null || value == "") {
+        wx.setStorage({
+          key: "value",
+          data: 1,
+          success: function(res) {
+            console.log("异步保存职业下标成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "value",
+          data: value,
+          success: function(res) {
+            console.log("异步保存职业下标成功");
+          }
+        });
+      }
+      var name = this.name;
+      if (name == null || name == "") {
+        wx.setStorage({
+          key: "name",
+          data: "",
+          success: function(res) {
+            console.log("异步保存姓名成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "name",
+          data: name,
+          success: function(res) {
+            console.log("异步保存姓名成功");
+          }
+        });
+      }
+      mpvue.navigateTo({ url: "../../pages/second/main" });
     }
   }
 };
@@ -247,7 +417,7 @@ export default {
 }
 .pannle {
   width: 750rpx;
-  height: 1100rpx;
+  height: 1400rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
   align-items: flex-start;
