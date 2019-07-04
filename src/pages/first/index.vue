@@ -276,7 +276,7 @@ export default {
           key: "union",
           data: union,
           success: function(res) {
-            console.log("异步保存联盟成功");
+            console.log("异步保存联盟1成功");
           }
         });
       }
@@ -286,7 +286,7 @@ export default {
           key: "union2",
           data: "",
           success: function(res) {
-            console.log("异步保存联盟成功");
+            console.log("异步保存联盟2成功");
           }
         });
       } else {
@@ -294,7 +294,7 @@ export default {
           key: "union2",
           data: union2,
           success: function(res) {
-            console.log("异步保存联盟成功");
+            console.log("异步保存联盟2成功");
           }
         });
       }
@@ -380,7 +380,7 @@ export default {
 
 <style scoped>
 .container {
-  background: rgba(255, 255, 255, 1);
+  background: #F8F8FA;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -412,12 +412,13 @@ export default {
   border-bottom: 1px solid #eaeaea;
 }
 .next {
+   margin-top: 15rpx;
   width: 712rpx;
   height: 122rpx;
 }
 .pannle {
   width: 750rpx;
-  height: 1400rpx;
+  height: 1350rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
   align-items: flex-start;
