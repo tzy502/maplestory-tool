@@ -11,13 +11,13 @@
         <input type="text" class="enter_input" v-model="name" placeholder="请输入角色名" />
       </div>
       <div class="enter">
-        <p class="enter_title">武器类型:</p>
+        <p class="enter_title">武器类型（系数）:</p>
         <input
           v-model="job"
           disabled="disabled"
           class="enter_input"
           @click="showPicker"
-          placeholder="请选择所使用武器类型"
+          placeholder="请选择所使用武器类型（系数）"
         />
         <input hidden v-model="value" />
         <mpvue-picker
@@ -54,11 +54,11 @@
       </div>
       <div class="enter">
         <p class="enter_title">联盟系统提升的主属性 1 (攻击队占领效果提升的主属性):</p>
-        <input type="number" class="enter_input_long" v-model="union" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="union" placeholder="请输入数值" />
       </div>
       <div class="enter">
         <p class="enter_title">联盟系统提升的主属性2（攻击队员效果提升的主属性）:</p>
-        <input type="number" class="enter_input_long" v-model="union2" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="union2" placeholder="请输入数值" />
       </div>
     </div>
     <div class="next_box">
@@ -96,24 +96,204 @@ export default {
       mode: "selector",
       pickerValueArray: [
         {
-          label: "太刀（神之子-阿尔法）", //武器名字
-          coefficient: "1.3", //系数
+          label: "单手剑", //武器名字
+          coefficient: "1.2", //系数
           value: 1 //下标
         },
         {
+          label: "单手剑（英雄）", //武器名字
+          coefficient: "1.3", //系数
+          value: 2 //下标
+        },
+        {
+          label: "双手剑", //武器名字
+          coefficient: "1.34", //系数
+          value: 3 //下标
+        },
+        {
+          label: "双手剑（英雄）", //武器名字
+          coefficient: "1.44", //系数
+          value: 4 //下标
+        },
+        {
+          label: "单手斧", //武器名字
+          coefficient: "1.2", //系数
+          value: 5 //下标
+        },
+        {
+          label: "单手斧（英雄）", //武器名字
+          coefficient: "1.3", //系数
+          value: 6 //下标
+        },
+        {
+          label: "双手斧", //武器名字
+          coefficient: "1.34", //系数
+          value: 7 //下标
+        },
+        {
+          label: "双手斧（英雄）", //武器名字
+          coefficient: "1.44", //系数
+          value: 8 //下标
+        },
+        {
+          label: "单手钝器", //武器名字
+          coefficient: "1.2", //系数
+          value: 9 //下标
+        },
+        {
+          label: "双手钝器", //武器名字
+          coefficient: "1.34", //系数
+          value: 10 //下标
+        },
+        {
           label: "枪（黑骑士）", //武器名字
-          coefficient: "1.3", //系数
-          value: 2
+          coefficient: "1.49", //系数
+          value: 11 //下标
         },
         {
-          label: "双手剑（魂骑士，英雄）", //武器名字
-          coefficient: "1.3", //系数
-          value: 3
+          label: "矛", //武器名字
+          coefficient: "1.49", //系数
+          value: 12 //下标
         },
         {
-          label: "双手钝器（圣骑士）", //武器名字
+          label: "亡命剑", //武器名字
           coefficient: "1.3", //系数
-          value: 4
+          value: 13 //下标
+        },
+        {
+          label: "武士刀", //武器名字
+          coefficient: "1.25", //系数
+          value: 14 //下标
+        },
+        {
+          label: "太刀（阿尔法）", //武器名字
+          coefficient: "1.34", //系数
+          value: 15 //下标
+        },
+        {
+          label: "大剑（贝塔）", //武器名字
+          coefficient: "1.49", //系数
+          value: 16 //下标
+        },
+        {
+          label: "机甲手枪（爆破）", //武器名字
+          coefficient: "1.7", //系数
+          value: 17 //下标
+        },
+        {
+          label: "短杖（龙神）", //武器名字
+          coefficient: "1", //系数
+          value: 18 //下标
+        },
+        {
+          label: "短杖（冒险家三法师，炎术士）", //武器名字
+          coefficient: "1.2", //系数
+          value: 19 //下标
+        },
+        {
+          label: "长杖（龙神，幻灵）", //武器名字
+          coefficient: "1", //系数
+          value: 20 //下标
+        },
+        {
+          label: "长杖（冒险家三法师，炎术士）", //武器名字
+          coefficient: "1.2", //系数
+          value: 21 //下标
+        },
+        {
+          label: "双头杖", //武器名字
+          coefficient: "1.2", //系数
+          value: 22 //下标
+        },
+        {
+          label: "折扇", //武器名字
+          coefficient: "1.35", //系数
+          value: 23 //下标
+        },
+        {
+          label: "ESP限制器", //武器名字
+          coefficient: "1.2", //系数
+          value: 24 //下标
+        },
+        {
+          label: "驯兽魔法棒", //武器名字
+          coefficient: "1.34", //系数
+          value: 25 //下标
+        },
+        {
+          label: "魔力手套", //武器名字
+          coefficient: "1.2", //系数
+          value: 26 //下标
+        },
+        {
+          label: "弓", //武器名字
+          coefficient: "1.3", //系数
+          value: 27 //下标
+        },
+        {
+          label: "弩", //武器名字
+          coefficient: "1.35", //系数
+          value: 28 //下标
+        },
+        {
+          label: "双弩枪", //武器名字
+          coefficient: "1.3", //系数
+          value: 29 //下标
+        },
+        {
+          label: "拳套", //武器名字
+          coefficient: "1.75", //系数
+          value: 30 //下标
+        },
+        {
+          label: "短刀", //武器名字
+          coefficient: "1.3", //系数
+          value: 31 //下标
+        },
+        {
+          label: "刀（副刀）", //武器名字
+          coefficient: "1.3", //系数
+          value: 32 //下标
+        },
+        {
+          label: "手杖（幻影）", //武器名字
+          coefficient: "1.3", //系数
+          value: 33 //下标
+        },
+        {
+          label: "能量剑（尖兵）", //武器名字
+          coefficient: "1.125", //系数
+          value: 34 //下标
+        },
+        {
+          label: "锁链（卡德娜）", //武器名字
+          coefficient: "1.3", //系数
+          value: 35 //下标
+        },
+        // {
+        //   label: "虎影扇子", //武器名字
+        //   coefficient: "", //系数
+        //   value: 36 //下标
+        // },
+        {
+          label: "短枪", //武器名字
+          coefficient: "1.5", //系数
+          value: 37 //下标
+        },
+        {
+          label: "指节", //武器名字
+          coefficient: "1.7", //系数
+          value: 38 //下标
+        },
+        {
+          label: "手持火炮", //武器名字
+          coefficient: "1.5", //系数
+          value: 39 //下标
+        },
+        {
+          label: "灵魂手铳", //武器名字
+          coefficient: "1.7", //系数
+          value: 40 //下标
         }
       ],
       pickerValueDefault: [1],
@@ -140,7 +320,6 @@ export default {
       console.log(e);
     },
     onChange(e) {
-      console.log(e.label);
       this.job = e.label;
       this.value = e.value;
     },
@@ -148,7 +327,6 @@ export default {
       console.log(e);
     },
     next() {
-      console.log(this.value);
       var level = this.level;
       if (level == null || level == "") {
         this.$mptoast("请填写等级", "error", "1");
@@ -380,7 +558,7 @@ export default {
 
 <style scoped>
 .container {
-  background: #F8F8FA;
+  background: #f8f8fa;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -412,13 +590,13 @@ export default {
   border-bottom: 1px solid #eaeaea;
 }
 .next {
-   margin-top: 15rpx;
+  margin-top: 15rpx;
   width: 712rpx;
   height: 122rpx;
 }
 .pannle {
   width: 750rpx;
-  height: 1350rpx;
+  height: 1150rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
   align-items: flex-start;
