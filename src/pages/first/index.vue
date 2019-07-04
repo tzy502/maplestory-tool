@@ -435,14 +435,14 @@ export default {
 }
 .enter_title {
   height: 50rpx;
-  font-size: 40rpx;
+  font-size: 28rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(153, 153, 153, 1);
 }
 .enter_input {
   height: 50rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(153, 153, 153, 1);
@@ -451,7 +451,7 @@ export default {
 .enter_input_long {
   height: 50rpx;
   margin-top: 70rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(153, 153, 153, 1);

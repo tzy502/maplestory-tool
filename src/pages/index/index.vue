@@ -2,14 +2,10 @@
   <div class="container">
     <p class="warring">注意事项</p>
     <div class="introduction">
-      <p class="warring-content">
-        1、目前不支持恶魔复仇者、尖兵、剑豪等攻击力计算比较特殊的职业
-      </p>
+      <p class="warring-content">1、目前不支持恶魔复仇者、尖兵、剑豪等攻击力计算比较特殊的职业</p>
       <p class="warring-content">2、请将每个部位尽量填写完整</p>
       <p class="warring-content">3、目前任为开发版本，开发进度10%</p>
-      <p class="warring-content">
-        4、基础思路学习冒险岛属性对应excel，当开发版本低时思路相近
-      </p>
+      <p class="warring-content">4、基础思路学习冒险岛属性对应excel，当开发版本低时思路相近</p>
       <p class="warring-content">5、仅发布在B站冒险岛交流群（957018793）内测</p>
       <p class="warring-content">6、介于作者只是一个垃圾后端前段能力令人发指，有问题见谅一下</p>
     </div>
@@ -23,12 +19,11 @@
 export default {
   data() {
     return {
-   };
+   
+    };
   },
 
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
@@ -39,7 +34,7 @@ export default {
   text-align: center;
 }
 .container {
-  background: rgba(255, 255, 255, 1);
+  background: #f8f8fa;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -78,8 +73,8 @@ export default {
   height: 122rpx;
 }
 .next_a {
-    width: 95%;
-    margin-top: 5rpx;
- border-radius: 10%;
+  width: 95%;
+  margin-top: 5rpx;
+  border-radius: 10%;
 }
 </style>

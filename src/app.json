@@ -1,9 +1,10 @@
 {
     "pages": [
-        "pages/first/main",
-        "pages/index/main",
+        "pages/second/main",
+        "pages/first/main", 
+        "pages/index/main"
      
-        "pages/second/main"
+       
     ],
         "window": {
       "backgroundTextStyle": "light",
