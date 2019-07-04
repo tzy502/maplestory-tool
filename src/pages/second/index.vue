@@ -116,7 +116,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "01mainStatPotential",
               value: ""
             },
@@ -152,7 +152,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "02mainStatPotential",
               value: ""
             },
@@ -188,7 +188,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "03mainStatPotential",
               value: ""
             },
@@ -224,7 +224,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "04mainStatPotential",
               value: ""
             },
@@ -260,7 +260,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "05mainStatPotential",
               value: ""
             },
@@ -296,7 +296,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "06mainStatPotential",
               value: ""
             },
@@ -332,7 +332,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "07mainStatPotential",
               value: ""
             },
@@ -368,7 +368,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "08mainStatPotential",
               value: ""
             },
@@ -404,7 +404,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "09mainStatPotential",
               value: ""
             },
@@ -440,7 +440,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "10mainStatPotential",
               value: ""
             },
@@ -476,7 +476,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "11mainStatPotential",
               value: ""
             },
@@ -512,7 +512,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "12mainStatPotential",
               value: ""
             },
@@ -548,7 +548,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "13mainStatPotential",
               value: ""
             },
@@ -584,7 +584,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "14mainStatPotential",
               value: ""
             },
@@ -620,7 +620,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "15mainStatPotential",
               value: ""
             },
@@ -656,7 +656,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "16mainStatPotential",
               value: ""
             },
@@ -692,7 +692,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "17mainStatPotential",
               value: ""
             },
@@ -728,7 +728,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "18mainStatPotential",
               value: ""
             },
@@ -764,7 +764,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "19mainStatPotential",
               value: ""
             },
@@ -800,7 +800,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "20mainStatPotential",
               value: ""
             },
@@ -836,7 +836,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "21mainStatPotential",
               value: ""
             },
@@ -872,7 +872,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "22mainStatPotential",
               value: ""
             },
@@ -908,7 +908,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "23mainStatPotential",
               value: ""
             },
@@ -944,7 +944,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "24mainStatPotential",
               value: ""
             },
@@ -980,7 +980,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "25mainStatPotential",
               value: ""
             },
@@ -1016,7 +1016,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "26mainStatPotential",
               value: ""
             },
@@ -1052,7 +1052,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "27mainStatPotential",
               value: ""
             },
@@ -1088,7 +1088,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "28mainStatPotential",
               value: ""
             },
@@ -1124,7 +1124,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "29mainStatPotential",
               value: ""
             },
@@ -1160,7 +1160,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "30mainStatPotential",
               value: ""
             },
@@ -1196,7 +1196,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "31mainStatPotential",
               value: ""
             },
@@ -1232,7 +1232,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "32mainStatPotential",
               value: ""
             },
@@ -1268,7 +1268,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "33mainStatPotential",
               value: ""
             },
@@ -1304,7 +1304,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "34mainStatPotential",
               value: ""
             },
@@ -1340,7 +1340,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "35mainStatPotential",
               value: ""
             },
@@ -1376,7 +1376,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "36mainStatPotential",
               value: ""
             },
@@ -1412,7 +1412,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "37mainStatPotential",
               value: ""
             },
@@ -1448,7 +1448,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "38mainStatPotential",
               value: ""
             },
@@ -1484,7 +1484,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "39mainStatPotential",
               value: ""
             },
@@ -1520,7 +1520,7 @@ export default {
               value: ""
             },
             {
-              itemName: "属性潜能（只需填写百分比）",
+              itemName: "主属性潜能（只需填写百分比）",
               elementName: "40mainStatPotential",
               value: ""
             },
