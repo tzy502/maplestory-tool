@@ -1,8 +1,9 @@
 {
     "pages": [
-        "pages/index/main",
+        "pages/index/main", 
+        "pages/warring/main",
         "pages/result/main",
-       
+  
         "pages/first/main",
         "pages/second/main"
     ],
