@@ -8,3 +8,7 @@ const app = new Vue(App)
 app.$mount()
 export default {
 }
+wx.cloud.init({
+    env: 'dev',
+    traceUser:true
+  })

@@ -8,6 +8,7 @@
       <p class="warring-content">4、基础思路学习冒险岛属性对应excel，当开发版本低时思路相近</p>
       <p class="warring-content">5、仅发布在B站冒险岛交流群（957018793）内测</p>
       <p class="warring-content">6、介于作者只是一个垃圾后端前段能力令人发指，有问题见谅一下</p>
+      <p class="warring-content">7、你现在所看到的版本排版还没排好，只是为了测试功能的版本</p>
     </div>
     <a href="../../pages/first/main" class="next_a">
       <img src="/static/images/next.png" class="next" background-size="cover" />

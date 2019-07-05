@@ -7,56 +7,56 @@
     <div class="pannle">
       <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">主属性</p>
+          <p class="result-title">再提升1%攻击力=</p>
         </div>
         <div class="online-right">
-          <p class="result-title">{{sumMainStat}}%</p>
+          <p class="result-title">{{AtkAndP}}攻击力</p>
         </div>
       </div>
 
       <div class="online_w">
         <div class="online-left">
-          <p class="result-title">副属性</p>
+          <p class="result-title">再提升1点攻击力=</p>
         </div>
         <div class="online-right">
-          <p class="result-title">0%</p>
+          <p class="result-title">{{AtkAndMain}}主属性</p>
         </div>
       </div>
       <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">攻击</p>
+          <p class="result-title">再提升1%攻击力=</p>
         </div>
         <div class="online-right">
-          <p class="result-title">0%</p>
+          <p class="result-title">{{AtkAndMainP}}%主属性</p>
         </div>
       </div>
-      <div class="online_blue">
+      <div class="online_w">
         <div class="online-left">
-          <p class="result-title">主属性潜能</p>
+          <p class="result-title">再提升1%爆伤=</p>
         </div>
         <div class="online-right">
-          <p class="result-title">0%</p>
+          <p class="result-title">{{CritDAndAtkP}}%攻击力</p>
         </div>
       </div>
 
-      <div class="online_w">
+      <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">副属性潜能</p>
+          <p class="result-title">再提升1%攻击力=</p>
         </div>
         <div class="online-right">
-          <p class="result-title">0%</p>
+          <p class="result-title">{{AtkPAndDamage}}%总伤/boss伤害</p>
         </div>
       </div>
-      <div class="online_blue">
+      <!-- <div class="online_blue">
         <div class="online-left">
           <p class="result-title">攻击潜能</p>
         </div>
         <div class="online-right">
           <p class="result-title">0%</p>
         </div>
-      </div>
+      </div>-->
     </div>
-    <img src="/static/images/result.png" class="next" background-size="cover" />
+    <!-- <img src="/static/images/result.png" class="next" background-size="cover" /> -->
   </div>
 </template>
 
@@ -65,43 +65,73 @@ import { count } from "../../utils/count.js";
 export default {
   data() {
     return {
-      sumMainStat: "",
-      sumViecStat: "",
-      sumAtk: "",
-      sumMainStatPotential: "",
-      sumViecStatPotential: "",
-      sumAtkPotential: ""
+      AtkAndP: "",
+      AtkAndMain: "",
+      AtkAndMainP: "",
+      CritDAndAtkP: "",
+      AtkPAndDamage: ""
     };
   },
   mounted: function() {
     var level = wx.getStorageSync("level");
     var arc = wx.getStorageSync("arc");
     var crit = wx.getStorageSync("crit");
+    if (crit == null || crit == "") {
+      crit = 0;
+    }
     var critDamage = wx.getStorageSync("critDamage");
+    if (critDamage == null || critDamage == "") {
+      critDamage = 0;
+    }
     var mapleWarrior = wx.getStorageSync("mapleWarrior");
+    if (mapleWarrior == null || mapleWarrior == "") {
+      mapleWarrior = 15;
+    }
     var superMain = wx.getStorageSync("superMain");
+    if (superMain == null || superMain == "") {
+      superMain = 0;
+    }
     var union = wx.getStorageSync("union");
+    if (union == null || union == "") {
+      union = 0;
+    }
     var union2 = wx.getStorageSync("union2");
+    if (union2 == null || union2 == "") {
+      union2 = 0;
+    }
     var job = wx.getStorageSync("job");
     var coefficient = wx.getStorageSync("coefficient");
+    if (coefficient == null || coefficient == "") {
+      coefficient = 1.0;
+    }
     var value = wx.getStorageSync("value");
     var list = wx.getStorageSync("list");
-
+    var finalDamage = wx.getStorageSync("finalDamage");
+    if (finalDamage == null || finalDamage == "") {
+      finalDamage = 0;
+    }
+    var bossDamage = wx.getStorageSync("bossDamage");
+    if (bossDamage == null || bossDamage == "") {
+      bossDamage = 0;
+    }
+    var damage = wx.getStorageSync("damage");
+    if (damage == null || damage == "") {
+      damage = 0;
+    }
     var sumMainStat = 0;
     var sumViecStat = 0;
     var sumAtk = 0;
     var sumMainStatPotential = 0;
     var sumViecStatPotential = 0;
     var sumAtkPotential = 0;
-    for (var i = 0; i < 40; i++) {
+    for (var i = 0; i < 39; i++) {
       var MainStat = list[i].item[0].value;
       if (MainStat != null && MainStat != "") {
-        console.log(MainStat)
         sumMainStat += parseInt(MainStat);
       }
       var ViecStat = list[i].item[1].value;
       if (ViecStat != null && ViecStat != "") {
-        sumViecStat += parseInt(MainStat);
+        sumViecStat += parseInt(ViecStat);
       }
       var Atk = list[i].item[2].value;
       if (Atk != null && Atk != "") {
@@ -111,6 +141,7 @@ export default {
       if (MainStatPotential != null && MainStatPotential != "") {
         sumMainStatPotential += parseInt(MainStatPotential);
       }
+
       var ViecStatPotential = list[i].item[4].value;
       if (ViecStatPotential != null && ViecStatPotential != "") {
         sumViecStatPotential += parseInt(ViecStatPotential);
@@ -120,16 +151,170 @@ export default {
         sumAtkPotential += parseInt(AtkPotential);
       }
     }
-    console.log(level)
-    sumMainStat=(sumMainStat+(level*5+18)*(1+mapleWarrior/100))*(1+sumMainStatPotential/100)+arc*10;
     this.sumMainStat = sumMainStat;
     this.sumViecStat = sumViecStat;
     this.sumAtk = sumAtk;
     this.sumMainStatPotential = sumMainStatPotential;
     this.sumViecStatPotential = sumViecStatPotential;
     this.sumAtkPotential = sumAtkPotential;
+    var real = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      sumAtk,
+      sumMainStatPotential,
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
 
-    var level = count(level, arc);
+    var mainStatAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      parseInt(sumMainStat + 1),
+      sumViecStat,
+      sumAtk,
+      sumMainStatPotential,
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
+    var mainStatPotentialAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      sumAtk,
+      parseInt(sumMainStatPotential + 1),
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
+    var atkAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      parseInt(sumAtk + 1),
+      sumMainStatPotential,
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
+    var AtkPotentialAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      sumAtk,
+      sumMainStatPotential,
+      sumViecStatPotential,
+      parseInt(sumAtkPotential + 1),
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
+    var damageAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      sumAtk,
+      sumMainStatPotential,
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      1 * damage + 1,
+      crit,
+      critDamage,
+      coefficient,
+      superMain
+    );
+    var critDamageAddOne = count(
+      level,
+      arc,
+      mapleWarrior,
+      sumMainStat,
+      sumViecStat,
+      sumAtk,
+      sumMainStatPotential,
+      sumViecStatPotential,
+      sumAtkPotential,
+      union,
+      union2,
+      finalDamage,
+      bossDamage,
+      damage,
+      crit,
+      1 * critDamage + 1,
+      coefficient,
+      superMain
+    );
+
+    this.AtkAndP = ((AtkPotentialAddOne - real) / (atkAddOne - real)).toFixed(
+      1
+    );
+    this.AtkAndMain = ((atkAddOne - real) / (mainStatAddOne - real)).toFixed(1);
+    this.AtkAndMainP = (
+      (AtkPotentialAddOne - real) /
+      (mainStatPotentialAddOne - real)
+    ).toFixed(1);
+    this.CritDAndAtkP = (
+      (critDamageAddOne - real) /
+      (AtkPotentialAddOne - real)
+    ).toFixed(1);
+    this.AtkPAndDamage = (
+      (AtkPotentialAddOne - real) /
+      (damageAddOne - real)
+    ).toFixed(1);
   },
 
   methods: {}
@@ -198,17 +383,15 @@ export default {
   background: #eff6ff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 .online_w {
   height: 80rpx;
   background: white;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .online-left {
-  width: 200rpx;
+  width: 250rpx;
 
   border-right: 1px solid #eaeaea;
 }

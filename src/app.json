@@ -2,16 +2,15 @@
     "pages": [
         "pages/index/main",
         "pages/result/main",
-        
-        "pages/first/main", 
+       
+        "pages/first/main",
         "pages/second/main"
- 
     ],
-        "window": {
-      "backgroundTextStyle": "light",
-      "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "MapleStroy工具",
-      "navigationBarTextStyle": "black"
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "MapleStroy工具",
+        "navigationBarTextStyle": "black"
     },
-    "cloud": true 
+    "cloud": true
 }

@@ -9,7 +9,7 @@
         <div class="enter_title_box">
           <p class="enter_title_box" @click="changeShow(index)">{{eq.listName}}</p>
         </div>
-
+<!-- <div> -->
         <div :style="{'display':eq.isHidden}">
           <div class="enter_box">
             <div class="enter_box_detail">
@@ -1140,42 +1140,7 @@ export default {
             }
           ]
         },
-        {
-          listName: "心脏",
-          isHidden: "none",
-          item: [
-            {
-              itemName: "主属性(潜能属性也填写在此处）",
-              elementName: "30mainStat",
-              value: ""
-            },
-            {
-              itemName: "副属性(潜能属性也填写在此处）",
-              elementName: "30viecStat",
-              value: ""
-            },
-            {
-              itemName: "攻击(潜能攻击也填写在此处）",
-              elementName: "30atk",
-              value: ""
-            },
-            {
-              itemName: "主属性潜能（只需填写百分比）",
-              elementName: "30mainStatPotential",
-              value: ""
-            },
-            {
-              itemName: "副属性潜能（只需填写百分比）",
-              elementName: "30viecStatPotential",
-              value: ""
-            },
-            {
-              itemName: "攻击潜能（只需填写百分比）",
-              elementName: "30atkPotential",
-              value: ""
-            }
-          ]
-        },
+       
         {
           listName: "图腾1",
           isHidden: "none",
@@ -1552,7 +1517,7 @@ export default {
       if (this.list[index].isHidden == "") {
         open = false;
       }
-      for (var i = 0; i <= 39; i++) {
+      for (var i = 0; i <= 38; i++) {
         this.list[i].isHidden = "none";
       }
       if (open) {

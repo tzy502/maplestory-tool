@@ -17,9 +17,10 @@
           disabled="disabled"
           class="enter_input"
           @click="showPicker"
-          placeholder="请选择所使用武器类型（系数）"
+          placeholder="请选择所使用武器类型）"
         />
-        <input hidden v-model="value" />
+
+        <input hidden v-model="coefficient" />
         <mpvue-picker
           ref="mpvuePicker"
           :mode="mode"
@@ -37,6 +38,18 @@
         <input type="number" class="enter_input" v-model="arc" placeholder="请输入数值" />
       </div>
       <div class="enter">
+        <p class="enter_title">伤害：</p>
+        <input type="number" class="enter_input" v-model="damage" placeholder="请输入数值" />
+      </div>
+      <div class="enter">
+        <p class="enter_title">boss伤害：</p>
+        <input type="number" class="enter_input" v-model="bossDamage" placeholder="请输入数值" />
+      </div>
+      <div class="enter">
+        <p class="enter_title">最终伤害：</p>
+        <input type="number" class="enter_input" v-model="finalDamage" placeholder="请输入数值" />
+      </div>
+      <div class="enter">
         <p class="enter_title">暴击：</p>
         <input type="number" class="enter_input" v-model="crit" placeholder="请输入数值" />
       </div>
@@ -44,6 +57,7 @@
         <p class="enter_title">暴击伤害：</p>
         <input type="number" class="enter_input" v-model="critDamage" placeholder="请输入数值" />
       </div>
+
       <div class="enter">
         <p class="enter_title">冒险岛勇士：</p>
         <input type="number" class="enter_input" v-model="mapleWarrior" placeholder="请输入数值" />
@@ -57,7 +71,7 @@
         <input type="number" class="enter_input" v-model="union" placeholder="请输入数值" />
       </div>
       <div class="enter">
-        <p class="enter_title">联盟系统提升的主属性2（攻击队员效果提升的主属性）:</p>
+        <p class="enter_title">内在属性，角色卡总和:</p>
         <input type="number" class="enter_input" v-model="union2" placeholder="请输入数值" />
       </div>
     </div>
@@ -89,6 +103,10 @@ export default {
     this.job = wx.getStorageSync("job");
     this.coefficient = wx.getStorageSync("coefficient");
     this.value = wx.getStorageSync("value");
+    this.finalDamage = wx.getStorageSync("finalDamage");
+    this.bossDamage = wx.getStorageSync("bossDamage");
+    this.damage = wx.getStorageSync("damage");
+    console.log(wx.getStorageSync("damage"));
     this.pickerValueDefault = [this.value];
   },
   data() {
@@ -308,7 +326,10 @@ export default {
       union2: "",
       job: "",
       coefficient: "",
-      value: ""
+      value: "",
+      finalDamage: "",
+      bossDamage: "",
+      damage: ""
     };
   },
 
@@ -495,7 +516,30 @@ export default {
         });
       }
 
-      var coefficient = this.coefficient;
+      var value = this.value;
+      if (value == null || value == "") {
+        this.$mptoast("请选择武器", "error", "1");
+        return;
+      }
+      if (value == null || value == "") {
+        wx.setStorage({
+          key: "value",
+          data: 1,
+          success: function(res) {
+            console.log("异步保存职业下标成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "value",
+          data: value,
+
+          success: function(res) {
+            console.log("异步保存职业下标成功");
+          }
+        });
+      }
+      var coefficient = this.pickerValueArray[value - 1].coefficient;
       if (coefficient == null || coefficient == "") {
         wx.setStorage({
           key: "coefficient",
@@ -514,24 +558,6 @@ export default {
         });
       }
 
-      var value = this.value;
-      if (value == null || value == "") {
-        wx.setStorage({
-          key: "value",
-          data: 1,
-          success: function(res) {
-            console.log("异步保存职业下标成功");
-          }
-        });
-      } else {
-        wx.setStorage({
-          key: "value",
-          data: value,
-          success: function(res) {
-            console.log("异步保存职业下标成功");
-          }
-        });
-      }
       var name = this.name;
       if (name == null || name == "") {
         wx.setStorage({
@@ -547,6 +573,60 @@ export default {
           data: name,
           success: function(res) {
             console.log("异步保存姓名成功");
+          }
+        });
+      }
+      var finalDamage = this.finalDamage;
+      if (finalDamage == null || finalDamage == "") {
+        wx.setStorage({
+          key: "finalDamage",
+          data: "",
+          success: function(res) {
+            console.log("异步保存终伤成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "finalDamage",
+          data: finalDamage,
+          success: function(res) {
+            console.log("异步保存终伤成功");
+          }
+        });
+      }
+      var damage = this.damage;
+      if (damage == null || damage == "") {
+        wx.setStorage({
+          key: "damage",
+          data: "",
+          success: function(res) {
+            console.log("异步保存终伤成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "damage",
+          data: damage,
+          success: function(res) {
+            console.log("异步保存终伤成功");
+          }
+        });
+      }
+      var bossDamage = this.bossDamage;
+      if (bossDamage == null || bossDamage == "") {
+        wx.setStorage({
+          key: "bossDamage",
+          data: "",
+          success: function(res) {
+            console.log("异步保存终伤成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "bossDamage",
+          data: bossDamage,
+          success: function(res) {
+            console.log("异步保存终伤成功");
           }
         });
       }
@@ -596,7 +676,6 @@ export default {
 }
 .pannle {
   width: 750rpx;
-  height: 1150rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
   align-items: flex-start;
