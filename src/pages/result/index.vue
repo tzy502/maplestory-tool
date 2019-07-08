@@ -1,5 +1,68 @@
 <template>
   <div class="container">
+    <!-- <div class="first_box">
+      <div class="litter_bule"></div>
+      <p class="first_content">结论</p>
+    </div>
+    <div class="pannle"></div> -->
+    <div class="first_box">
+      <div class="litter_bule"></div>
+      <p class="first_content">收益明细</p>
+    </div>
+
+    <div class="pannle">
+      <div class="online_blue">
+        <div class="online-left">
+          <p class="result-title">再提升1攻击力≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{AtkUp}}单排</p>
+        </div>
+      </div>
+      <div class="online_w">
+        <div class="online-left">
+          <p class="result-title">再提升1%攻击力≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{AtkPUp}}单排</p>
+        </div>
+      </div>
+      <div class="online_blue">
+        <div class="online-left">
+          <p class="result-title">再提升1主属性≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{MainUp}}单排</p>
+        </div>
+      </div>
+      <div class="online_w">
+        <div class="online-left">
+          <p class="result-title">再提升1%主属性≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{MainPUp}}单排</p>
+        </div>
+      </div>
+      <div class="online_blue">
+        <div class="online-left">
+          <p class="result-title">再提升1%爆伤≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{CritDUp}}单排</p>
+        </div>
+      </div>
+      <div class="online_w">
+        <div class="online-left">
+          <p class="result-title">再提升1伤害/boss伤害≈</p>
+        </div>
+        <div class="online-right">
+          <p class="result-title">{{DamageUp}}单排</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cut"></div>
+
     <div class="first_box">
       <div class="litter_bule"></div>
       <p class="first_content">计算结果</p>
@@ -7,7 +70,7 @@
     <div class="pannle">
       <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">再提升1%攻击力=</p>
+          <p class="result-title">再提升1%攻击力≈</p>
         </div>
         <div class="online-right">
           <p class="result-title">{{AtkAndP}}攻击力</p>
@@ -16,7 +79,7 @@
 
       <div class="online_w">
         <div class="online-left">
-          <p class="result-title">再提升1点攻击力=</p>
+          <p class="result-title">再提升1点攻击力≈</p>
         </div>
         <div class="online-right">
           <p class="result-title">{{AtkAndMain}}主属性</p>
@@ -24,7 +87,7 @@
       </div>
       <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">再提升1%攻击力=</p>
+          <p class="result-title">再提升1%攻击力≈</p>
         </div>
         <div class="online-right">
           <p class="result-title">{{AtkAndMainP}}%主属性</p>
@@ -32,7 +95,7 @@
       </div>
       <div class="online_w">
         <div class="online-left">
-          <p class="result-title">再提升1%爆伤=</p>
+          <p class="result-title">再提升1%爆伤≈</p>
         </div>
         <div class="online-right">
           <p class="result-title">{{CritDAndAtkP}}%攻击力</p>
@@ -41,22 +104,13 @@
 
       <div class="online_blue">
         <div class="online-left">
-          <p class="result-title">再提升1%攻击力=</p>
+          <p class="result-title">再提升1%攻击力≈</p>
         </div>
         <div class="online-right">
           <p class="result-title">{{AtkPAndDamage}}%总伤/boss伤害</p>
         </div>
       </div>
-      <!-- <div class="online_blue">
-        <div class="online-left">
-          <p class="result-title">攻击潜能</p>
-        </div>
-        <div class="online-right">
-          <p class="result-title">0%</p>
-        </div>
-      </div>-->
     </div>
-    <!-- <img src="/static/images/result.png" class="next" background-size="cover" /> -->
   </div>
 </template>
 
@@ -65,6 +119,12 @@ import { count } from "../../utils/count.js";
 export default {
   data() {
     return {
+      AtkUp: "",
+      AtkPUp: "",
+      MainUp: "",
+      MainPUp: "",
+      CritDUp: "",
+      DamageUp: "",
       AtkAndP: "",
       AtkAndMain: "",
       AtkAndMainP: "",
@@ -299,6 +359,12 @@ export default {
       superMain
     );
 
+    this.AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
+    this.AtkUp = (atkAddOne - real).toFixed(1);
+    this.MainPUp = (mainStatPotentialAddOne - real).toFixed(1);
+    this.MainUp = (mainStatAddOne - real).toFixed(1);
+    this.CritDUp = (critDamageAddOne - real).toFixed(1);
+    this.DamageUp = (damageAddOne - real).toFixed(1);
     this.AtkAndP = ((AtkPotentialAddOne - real) / (atkAddOne - real)).toFixed(
       1
     );
@@ -315,6 +381,20 @@ export default {
       (AtkPotentialAddOne - real) /
       (damageAddOne - real)
     ).toFixed(1);
+    wx.setStorage({
+      key: "real",
+      data: real,
+      success: function(res) {
+        console.log("异步保存实际面板成功");
+      }
+    });
+        wx.setStorage({
+      key: "haveDate",
+      data: true,
+      success: function(res) {
+        console.log("设置标签");
+      }
+    });
   },
 
   methods: {}
@@ -331,8 +411,8 @@ export default {
   background: #f8f8fa;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -371,11 +451,12 @@ export default {
 }
 .pannle {
   width: 750rpx;
-  height: 1150rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .online_blue {
@@ -403,5 +484,9 @@ export default {
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(102, 102, 102, 1);
+}
+.cut {
+  margin-top: 30rpx;
+  border-bottom: 1px solid #eaeaea;
 }
 </style>

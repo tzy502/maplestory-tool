@@ -2,7 +2,7 @@
   <div class="container">
     <p class="warring">注意事项</p>
     <div class="introduction">
-      <p class="warring-content">1、目前不支持恶魔复仇者、尖兵、剑豪等攻击力计算比较特殊的职业</p>
+      <p class="warring-content">1、目前不支持恶魔复仇者、尖兵主属性特殊职业，剑豪，亚克等攻击力计算比较特殊的职业可能会有误差</p>
       <p class="warring-content">2、请将每个部位尽量填写完整</p>
       <p class="warring-content">3、目前任为开发版本，开发进度10%</p>
       <p class="warring-content">4、基础思路学习冒险岛属性对应excel，当开发版本低时思路相近</p>
@@ -13,6 +13,9 @@
     <a href="../../pages/first/main" class="next_a">
       <img src="/static/images/next.png" class="next" background-size="cover" />
     </a>
+      <!-- <a href="../../pages/result/main" class="next_a">
+      <img src="/static/images/next.png" class="next" background-size="cover" />
+    </a> -->
   </div>
 </template>
 

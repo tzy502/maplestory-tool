@@ -9,7 +9,7 @@
         <div class="enter_title_box">
           <p class="enter_title_box" @click="changeShow(index)">{{eq.listName}}</p>
         </div>
-<!-- <div> -->
+        <!-- <div> -->
         <div :style="{'display':eq.isHidden}">
           <div class="enter_box">
             <div class="enter_box_detail">
@@ -1140,7 +1140,7 @@ export default {
             }
           ]
         },
-       
+
         {
           listName: "图腾1",
           isHidden: "none",
@@ -1505,12 +1505,11 @@ export default {
     };
   },
   mounted: function() {
-    var list= wx.getStorageSync("list");
-    if(list!=null&&list!=""){
-    this.list =list;
+    var list = wx.getStorageSync("list");
+    if (list != null && list != "") {
+      this.list = list;
     }
-  
-},
+  },
   methods: {
     changeShow(index) {
       var open = true;
@@ -1531,6 +1530,11 @@ export default {
         data: list,
         success: function(res) {
           console.log("异步保存装备信息成功");
+          wx.setStorage({
+            key: "haveDate",
+            data: true,
+            success: function(res) {}
+          });
           mpvue.navigateTo({ url: "../../pages/result/main" });
         }
       });
@@ -1544,8 +1548,8 @@ export default {
   background: #f8f8fa;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+ align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .first_box {
@@ -1573,7 +1577,8 @@ export default {
   border-bottom: 1px solid #eaeaea;
 }
 .next {
-   margin-top: 15rpx;
+  margin-top: 15rpx;
+  margin-left: 19rpx;
   width: 712rpx;
   height: 122rpx;
 }
@@ -1623,6 +1628,7 @@ export default {
 }
 .enter_input {
   margin-top: 18rpx;
+  padding-left: 10rpx;
   width: 519rpx;
   height: 30rpx;
   background: rgba(255, 255, 255, 1);
@@ -1632,6 +1638,7 @@ export default {
 .enter_input_long {
   height: 50rpx;
   margin-top: 70rpx;
+    padding-left: 10rpx;
   font-size: 30rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;

@@ -57,7 +57,10 @@
         <p class="enter_title">暴击伤害：</p>
         <input type="number" class="enter_input" v-model="critDamage" placeholder="请输入数值" />
       </div>
-
+      <div class="enter">
+        <p class="enter_title">无视防御力：</p>
+        <input type="number" class="enter_input" v-model="igone" placeholder="请输入数值" />
+      </div>
       <div class="enter">
         <p class="enter_title">冒险岛勇士：</p>
         <input type="number" class="enter_input" v-model="mapleWarrior" placeholder="请输入数值" />
@@ -106,11 +109,12 @@ export default {
     this.finalDamage = wx.getStorageSync("finalDamage");
     this.bossDamage = wx.getStorageSync("bossDamage");
     this.damage = wx.getStorageSync("damage");
-    console.log(wx.getStorageSync("damage"));
+    this.igone = wx.getStorageSync("igone");
     this.pickerValueDefault = [this.value];
   },
   data() {
     return {
+         label:"",
       mode: "selector",
       pickerValueArray: [
         {
@@ -320,6 +324,7 @@ export default {
       arc: "",
       crit: "",
       critDamage: "",
+      igone:"",
       mapleWarrior: "",
       superMain: "",
       union: "",
@@ -385,6 +390,24 @@ export default {
           data: arc,
           success: function(res) {
             console.log("异步保存神秘成功");
+          }
+        });
+      }
+            var igone = this.igone;
+      if (igone == null || igone == "") {
+        wx.setStorage({
+          key: "igone",
+          data: "",
+          success: function(res) {
+            console.log("异步保存无视成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "igone",
+          data: igone,
+          success: function(res) {
+            console.log("异步保存无视成功");
           }
         });
       }
@@ -641,8 +664,8 @@ export default {
   background: #f8f8fa;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .first_box {
@@ -673,13 +696,22 @@ export default {
   margin-top: 15rpx;
   width: 712rpx;
   height: 122rpx;
+
 }
+.next_box{    
+  margin-left: 19rpx;
+    display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;}
+
+
 .pannle {
   width: 750rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
-  align-items: flex-start;
-  justify-content: flex-start;
+
 }
 .enter {
   margin-top: 45rpx;
