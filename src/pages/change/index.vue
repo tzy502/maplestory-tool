@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <p class="warring">潜能提升计算</p>
+       <p class="warring-content">测试版暂不支持无视计算</p>
     <div class="introduction">
       <button class="addLine" @click="onAdd">添加新一套配装</button>
       <button class="addLine" @click="onReduce">去除最后一套配装</button>
@@ -67,7 +68,13 @@ export default {
     this.finalDamage = wx.getStorageSync("finalDamage");
     this.bossDamage = wx.getStorageSync("bossDamage");
     this.damage = wx.getStorageSync("damage");
-    console.log(wx.getStorageSync("damage"));
+    var haveDate = wx.getStorageSync("haveDate");
+    if (haveDate != true) {
+      console.log(123);
+      this.$mptoast("请先填写装备详情", "error", "1");
+      var url = "../../pages/first/main";
+      wx.navigateTo({ url });
+    }
   },
   data() {
     return {
@@ -93,10 +100,10 @@ export default {
           label: "%主属性",
           value: "mainP"
         },
-            {
+        {
           label: "等级",
           value: "level"
-            }
+        }
         // },
         // {
         //   label: "无视",
@@ -137,7 +144,13 @@ export default {
       bossDamage: "",
       damage: "",
       typeTransit: "",
-      typeNameTransit: ""
+      typeNameTransit: "",
+      sumMainStat: "",
+      sumViecStat: "",
+      sumAtk: "",
+      sumMainStatPotential: "",
+      sumViecStatPotential: "",
+      sumAtkPotential: ""
     };
   },
 
@@ -188,6 +201,82 @@ export default {
       this.items[i].change.pop();
     },
     result() {
+      var level = wx.getStorageSync("level");
+      var arc = wx.getStorageSync("arc");
+      var crit = wx.getStorageSync("crit");
+      if (crit == null || crit == "") {
+        crit = 0;
+      }
+      var critDamage = wx.getStorageSync("critDamage");
+      if (critDamage == null || critDamage == "") {
+        critDamage = 0;
+      }
+      var mapleWarrior = wx.getStorageSync("mapleWarrior");
+      if (mapleWarrior == null || mapleWarrior == "") {
+        mapleWarrior = 15;
+      }
+      var superMain = wx.getStorageSync("superMain");
+      if (superMain == null || superMain == "") {
+        superMain = 0;
+      }
+      var union = wx.getStorageSync("union");
+      if (union == null || union == "") {
+        union = 0;
+      }
+      var union2 = wx.getStorageSync("union2");
+      if (union2 == null || union2 == "") {
+        union2 = 0;
+      }
+      var job = wx.getStorageSync("job");
+      var coefficient = wx.getStorageSync("coefficient");
+      if (coefficient == null || coefficient == "") {
+        coefficient = 1.0;
+      }
+      var value = wx.getStorageSync("value");
+      var finalDamage = wx.getStorageSync("finalDamage");
+      if (finalDamage == null || finalDamage == "") {
+        finalDamage = 0;
+      }
+      var bossDamage = wx.getStorageSync("bossDamage");
+      if (bossDamage == null || bossDamage == "") {
+        bossDamage = 0;
+      }
+      var damage = wx.getStorageSync("damage");
+      if (damage == null || damage == "") {
+        damage = 0;
+      }
+      var sumMainStat = wx.getStorageSync("sumMainStat");
+      if (sumMainStat == null || sumMainStat == "") {
+        sumMainStat = 0;
+      }
+      var sumViecStat = wx.getStorageSync("sumViecStat");
+      if (sumViecStat == null || sumViecStat == "") {
+        sumViecStat = 0;
+      }
+      var sumAtk = wx.getStorageSync("sumAtk");
+      if (sumAtk == null || sumAtk == "") {
+        sumAtk = 0;
+      }
+      var sumMainStatPotential = wx.getStorageSync(sumMainStatPotential"");
+      if (sumMainStatPotential == null || sumMainStatPotential == "") {
+        sumMainStatPotential = 0;
+      }
+      var sumViecStatPotential = wx.getStorageSync("sumViecStatPotential");
+      if (sumViecStatPotential == null || sumViecStatPotential == "") {
+        sumViecStatPotential = 0;
+      }
+      var sumAtkPotential = wx.getStorageSync("sumAtkPotential");
+      if (sumAtkPotential == null || sumAtkPotential == "") {
+        sumAtkPotential = 0;
+      }
+         var real = wx.getStorageSync("real");
+      if (real == null || real == "") {
+        real = 0;
+      } 
+      var igone = wx.getStorageSync("igone");
+      if (igone == null || igone == "") {
+        igone = 0;
+      } 
       var list = this.items;
       var atk = 0;
       var atkp = 0;
@@ -195,6 +284,7 @@ export default {
       var main = 0;
       var mainP = 0;
       var mainP = 0;
+      var resultList = [];
       for (var i = 0; i < list.length; i++) {
         atk = 0;
         atkp = 0;
@@ -208,8 +298,8 @@ export default {
           var num = change[j].num;
           if (num == null || num == "") {
             num = 0;
-          }else{
-            num=num*change[j].isAdd
+          } else {
+            num = num * change[j].isAdd;
           }
           switch (type) {
             case "atk": {
@@ -233,28 +323,39 @@ export default {
               break;
             }
           }
-                }
-        var count= count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
+        }
+        var result = count(
+          level,
+          arc,
+          mapleWarrior,
+          parseInt(sumMainStat + 1),
+          sumViecStat,
+          sumAtk,
+          sumMainStatPotential,
+          sumViecStatPotential,
+          sumAtkPotential,
+          union,
+          union2,
+          finalDamage,
+          bossDamage,
+          damage,
+          crit,
+          critDamage,
+          coefficient,
+          superMain
+        );
+        var change = parseInt(result)-parseInt(real);
+        resultList.push({ name: list[i].name, result: change });
       }
+
+      wx.setStorage({
+        key: "changeList",
+        data: resultList,
+        success: function(res) {
+          var url = "../../pages/presult/main";
+          wx.navigateTo({ url });
+        }
+      });
     }
   }
 };
@@ -266,9 +367,7 @@ export default {
   padding: 10rpx;
   text-align: center;
 }
-.container {
-  background: #f8f8fa;
-}
+
 .introduction {
   margin-top: 30rpx;
   margin-left: 30rpx;
@@ -278,7 +377,7 @@ export default {
 .warring {
   height: 31rpx;
   padding-top: 65rpx;
-  margin-left: 276rpx;
+  margin-left: 58rpx;
   font-size: 32rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;
@@ -290,10 +389,8 @@ export default {
   font-weight: 400;
   color: rgba(102, 102, 102, 1);
   line-height: 36rpx;
-  margin-top: 5%;
-  margin-right: 4%;
-  margin-left: 4%;
-  margin-bottom: 10%;
+  margin-left: 58rpx;
+  margin-top: 25rpx;
 }
 .next {
   width: 712rpx;
@@ -346,11 +443,7 @@ export default {
 }
 .container {
   background: #f8f8fa;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+
 }
 .first_box {
   margin-left: 5rpx;

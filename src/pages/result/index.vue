@@ -4,7 +4,7 @@
       <div class="litter_bule"></div>
       <p class="first_content">结论</p>
     </div>
-    <div class="pannle"></div> -->
+    <div class="pannle"></div>-->
     <div class="first_box">
       <div class="litter_bule"></div>
       <p class="first_content">收益明细</p>
@@ -211,12 +211,7 @@ export default {
         sumAtkPotential += parseInt(AtkPotential);
       }
     }
-    this.sumMainStat = sumMainStat;
-    this.sumViecStat = sumViecStat;
-    this.sumAtk = sumAtk;
-    this.sumMainStatPotential = sumMainStatPotential;
-    this.sumViecStatPotential = sumViecStatPotential;
-    this.sumAtkPotential = sumAtkPotential;
+
     var real = count(
       level,
       arc,
@@ -386,14 +381,44 @@ export default {
       data: real,
       success: function(res) {
         console.log("异步保存实际面板成功");
+        wx.setStorage({
+          key: "haveDate",
+          data: true,
+          success: function(res) {
+            console.log("设置标签");
+          }
+        });
       }
     });
-        wx.setStorage({
-      key: "haveDate",
-      data: true,
-      success: function(res) {
-        console.log("设置标签");
-      }
+    wx.setStorage({
+      key: "sumMainStat",
+      data: sumMainStat,
+      success: function(res) {}
+    });
+    wx.setStorage({
+      key: "sumViecStat",
+      data: sumViecStat,
+      success: function(res) {}
+    });
+    wx.setStorage({
+      key: "sumAtk",
+      data: sumAtk,
+      success: function(res) {}
+    });
+    wx.setStorage({
+      key: "sumMainStatPotential",
+      data: sumMainStatPotential,
+      success: function(res) {}
+    });
+    wx.setStorage({
+      key: "sumViecStatPotential",
+      data: sumViecStatPotential,
+      success: function(res) {}
+    });
+    wx.setStorage({
+      key: "sumAtkPotential",
+      data: sumAtkPotential,
+      success: function(res) {}
     });
   },
 

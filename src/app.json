@@ -1,15 +1,11 @@
 {
     "pages": [
-        "pages/change/main",
         "pages/index/main",
+        "pages/change/main",
+        "pages/presult/main",
         "pages/warring/main",
         "pages/second/main",
         "pages/result/main",
-         
-       
-
-  
-       
         "pages/first/main"
     ],
     "window": {
