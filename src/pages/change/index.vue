@@ -103,12 +103,12 @@ export default {
         {
           label: "等级",
           value: "level"
+        
+        },
+        {
+          label: "无视",
+          value: "igone"
         }
-        // },
-        // {
-        //   label: "无视",
-        //   value: "igone"
-        // }
       ],
       items: [
         {
@@ -257,7 +257,10 @@ export default {
       if (sumAtk == null || sumAtk == "") {
         sumAtk = 0;
       }
-      var sumMainStatPotential = wx.getStorageSync(sumMainStatPotential"");
+
+
+
+      var sumMainStatPotential = wx.getStorageSync("sumMainStatPotential");
       if (sumMainStatPotential == null || sumMainStatPotential == "") {
         sumMainStatPotential = 0;
       }
@@ -285,6 +288,7 @@ export default {
       var mainP = 0;
       var mainP = 0;
       var resultList = [];
+      var newIgone=igone;
       for (var i = 0; i < list.length; i++) {
         atk = 0;
         atkp = 0;
@@ -292,6 +296,7 @@ export default {
         main = 0;
         mainP = 0;
         mainP = 0;
+newIgone=igone;
         var change = list[i];
         for (var j = 0; j < change.length; j++) {
           var type = change[j].type;
@@ -322,6 +327,16 @@ export default {
               mainP += num;
               break;
             }
+            case "igone": {
+              if(num<=0){
+                newIgone=newIgone/(100-num)
+              }else{
+newIgone=newIgone+(1-newIgone*num)
+
+              }
+              mainP += num;
+              break;
+            }
           }
         }
         var result = count(
@@ -344,7 +359,7 @@ export default {
           coefficient,
           superMain
         );
-        var change = parseInt(result)-parseInt(real);
+        var change = parseInt(result*(300*(1-igone/100)))-parseInt(real*(300*(1-newIgone/100)));
         resultList.push({ name: list[i].name, result: change });
       }
 
