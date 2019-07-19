@@ -8,6 +8,9 @@ var count = function (level, arc, mapleWarrior, sumMainStat, sumViecStat, sumAtk
 
     var realatk=sumAtk * (1 + sumAtkPotential / 100)
  
+    var level = wx.getStorageSync("level");
+    console.log(level)
+
     var total = ((realMainStat*4+realViecStat)*coefficient*(realatk/100)*totalDamage*(1 + finalDamage/100) * ((1.35+ critDamage / 100) * crit / 100));
      return total;
 }

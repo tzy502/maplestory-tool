@@ -62,7 +62,7 @@ function getBarOption(name, date) {
       top: 40,
       containLabel: true
     },
-    xAxis: [
+    yAxis: [
       {
         type: "value",
         axisLine: {
@@ -75,7 +75,7 @@ function getBarOption(name, date) {
         }
       }
     ],
-    yAxis: [
+     xAxis: [
       {
      
         type: "category",
@@ -93,7 +93,7 @@ function getBarOption(name, date) {
     ],
     series: [
       {
-        name: "正面",
+        name: "提升",
         type: "bar",
         stack: "总量",
         label: {
@@ -118,7 +118,7 @@ function getBarOption(name, date) {
 }
 .introduction {
   margin-top: 30rpx;
-  margin-left: 30rpx;
+  margin-left: 10rpx;
   padding: 10rpx;
   box-shadow: 0rpx 3rpx 44rpx 2rpx rgba(0, 0, 0, 0.1);
     border: 1px solid #eaeaea;

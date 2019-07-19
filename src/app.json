@@ -1,11 +1,15 @@
 {
     "pages": [
+   
+        "pages/warring/main",
+        "pages/arcresult/main",
+        "pages/pselect/main",
         "pages/index/main",
         "pages/change/main",
         "pages/presult/main",
-        "pages/warring/main",
         "pages/second/main",
         "pages/result/main",
+        "pages/about/main",
         "pages/first/main"
     ],
     "window": {
@@ -14,5 +18,6 @@
         "navigationBarTitleText": "MapleStroy工具",
         "navigationBarTextStyle": "black"
     },
+
     "cloud": true
 }

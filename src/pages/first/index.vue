@@ -26,6 +26,10 @@
           :mode="mode"
           :pickerValueDefault="pickerValueDefault"
           @onChange="onChange"
+          
+        @onConfirm="onConfirm"
+        @onCancel="onCancel"
+
           :pickerValueArray="pickerValueArray"
         ></mpvue-picker>
       </div>
@@ -39,27 +43,27 @@
       </div>
       <div class="enter">
         <p class="enter_title">伤害：</p>
-        <input type="number" class="enter_input" v-model="damage" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="damage" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
         <p class="enter_title">boss伤害：</p>
-        <input type="number" class="enter_input" v-model="bossDamage" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="bossDamage" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
         <p class="enter_title">最终伤害：</p>
-        <input type="number" class="enter_input" v-model="finalDamage" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="finalDamage" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
         <p class="enter_title">暴击：</p>
-        <input type="number" class="enter_input" v-model="crit" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="crit" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
         <p class="enter_title">暴击伤害：</p>
-        <input type="number" class="enter_input" v-model="critDamage" placeholder="请输入数值" />
+        <input type="number" class="enter_input" v-model="critDamage" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
-        <p class="enter_title">无视防御力：</p>
-        <input type="number" class="enter_input" v-model="igone" placeholder="请输入数值" />
+        <p class="enter_title">无视防御力(实际无视)：</p>
+        <input type="number" class="enter_input" v-model="igone" placeholder="请输入数值（不用填写百分号）" />
       </div>
       <div class="enter">
         <p class="enter_title">冒险岛勇士：</p>
@@ -74,7 +78,7 @@
         <input type="number" class="enter_input" v-model="union" placeholder="请输入数值" />
       </div>
       <div class="enter">
-        <p class="enter_title">内在属性，角色卡总和:</p>
+        <p class="enter_title">内在主属性，角色卡总和:</p>
         <input type="number" class="enter_input" v-model="union2" placeholder="请输入数值" />
       </div>
     </div>
@@ -114,7 +118,7 @@ export default {
   },
   data() {
     return {
-         label:"",
+        //  label:"",
       mode: "selector",
       pickerValueArray: [
         {
@@ -292,11 +296,11 @@ export default {
           coefficient: "1.3", //系数
           value: 35 //下标
         },
-        // {
-        //   label: "虎影扇子", //武器名字
-        //   coefficient: "", //系数
-        //   value: 36 //下标
-        // },
+        {
+          label: "虎影扇子", //武器名字
+          coefficient: "1.0", //系数
+          value: 36 //下标
+        },
         {
           label: "短枪", //武器名字
           coefficient: "1.5", //系数
@@ -325,7 +329,7 @@ export default {
       crit: "",
       critDamage: "",
       igone:"",
-      mapleWarrior: "",
+      mapleWarrior: "15",
       superMain: "",
       union: "",
       union2: "",
@@ -343,14 +347,19 @@ export default {
       this.$refs.mpvuePicker.show();
     },
     onConfirm(e) {
-      console.log(e);
-    },
-    onChange(e) {
+        if(e.labe!=null||e.labe!=""){
       this.job = e.label;
       this.value = e.value;
+      console.log(this.value)
+      }
+    },
+    onChange(e) {
+ 
+   this.job = e.label;
+
     },
     onCancel(e) {
-      console.log(e);
+   this.job ="";
     },
     next() {
       var level = this.level;
@@ -381,7 +390,7 @@ export default {
           }
         });
       } else {
-        if (arc > 1320 || arc <= 0 || arc % 10 != 0) {
+        if (arc > 1320 || arc < 0 || arc % 10 != 0) {
           this.$mptoast("请填写正确的神秘力量", "error", "1");
           return;
         }
@@ -731,6 +740,7 @@ export default {
 }
 .enter_input {
   height: 50rpx;
+  width: 450rpx;
   font-size: 28rpx;
   font-family: PingFang-SC-Medium;
   font-weight: 500;

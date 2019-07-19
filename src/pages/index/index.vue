@@ -4,13 +4,30 @@
     <p class="literTitle">将根据你选择的工具为你提供计算服务</p>
     <div class="introduction">
       <div :style="{'display':req}">
-        <a href="../../pages/first/main"><div class="box">先填写角色属性</div></a>
+        <a href="../../pages/first/main">
+          <div class="box">先填写角色属性</div>
+        </a>
       </div>
       <div :style="{'display':notReq}">
-        <a href="../../pages/first/main"><div class="box">修改已有角色属性</div></a>
-        <a href="../../pages/result/main"><div class="box">具体属性比例</div></a>
-        <a href="../../pages/change/main"><div class="box">冒险岛潜能收益</div></a>
+        <a href="../../pages/first/main">
+          <div class="box">修改已有角色属性</div>
+        </a>
+        <a href="../../pages/result/main">
+          <div class="box">具体属性比例</div>
+        </a>
+        <a href="../../pages/change/main">
+          <div class="box">潜能对面板提升</div>
+        </a>
+        <a href="../../pages/pselect/main">
+          <div class="box">冒险岛潜能收益柱状图</div>
+        </a>
+                <a href="../../pages/arcresult/main">
+          <div class="box">冒险岛神秘徽章计算</div>
+        </a>
       </div>
+             <a href="../../pages/about/main">
+          <div class="box">关于我们</div>
+        </a>
     </div>
     <!-- 
       <img src="/static/images/result.png" class="next" background-size="cover" />
@@ -28,9 +45,9 @@ export default {
   },
   mounted: function() {
     var haveDate = wx.getStorageSync("haveDate");
-    if (haveDate) {
-      this.req="none";
-      this.notReq="";
+    if (haveDate==1) {
+      this.req = "none";
+      this.notReq = "";
     }
   },
   methods: {}

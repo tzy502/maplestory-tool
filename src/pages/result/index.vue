@@ -111,6 +111,9 @@
         </div>
       </div>
     </div>
+            <a href="../../pages/index/main">
+          <div class="box">返回首页</div>
+        </a>
   </div>
 </template>
 
@@ -211,7 +214,7 @@ export default {
         sumAtkPotential += parseInt(AtkPotential);
       }
     }
-
+    
     var real = count(
       level,
       arc,
@@ -383,7 +386,7 @@ export default {
         console.log("异步保存实际面板成功");
         wx.setStorage({
           key: "haveDate",
-          data: true,
+          data: 1,
           success: function(res) {
             console.log("设置标签");
           }
@@ -513,5 +516,20 @@ export default {
 .cut {
   margin-top: 30rpx;
   border-bottom: 1px solid #eaeaea;
+}
+.box {
+  margin-top: 36rpx;
+  margin-left: 38rpx;
+  margin-right: 42rpx;
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-left: 41rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 6rpx;
+    width: 700rpx;
 }
 </style>

@@ -81,7 +81,7 @@
       </li>
     </div>
     <div class="next_box">
-      <img src="/static/images/next.png" @click="next" class="next" background-size="cover" />
+      <img src="/static/images/result.png" @click="next" class="next" background-size="cover" />
     </div>
     <mptoast />
   </div>

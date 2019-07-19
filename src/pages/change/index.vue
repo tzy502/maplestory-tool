@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <p class="warring">潜能提升计算</p>
-       <p class="warring-content">测试版暂不支持无视计算</p>
+    <!-- <p class="warring-content">测试版暂不支持无视计算</p> -->
     <div class="introduction">
-      <button class="addLine" @click="onAdd">添加新一套配装</button>
-      <button class="addLine" @click="onReduce">去除最后一套配装</button>
+      <!-- <button class="addLine" @click="onAdd">添加新一套配装</button>
+      <button class="addLine" @click="onReduce">去除最后一套配装</button> -->
       <div class="box" v-for="(item,i) of items" :key="i">
         <div class="suitName">
           <p class="suitName_title">配装名：</p>
@@ -19,7 +19,7 @@
         <div class="pannel" v-for="(change,j) of items[i].change" :key="j">
           <p class="enter_title">{{items[i].change[j].addName}}</p>
           <input style="display: none;" v-model="items[i].change[j].isAdd" />
-          <input class="enter_input" v-model="items[i].change[j].num" />
+          <input class="enter_input" type="number" v-model="items[i].change[j].num" />
           <input
             v-model="items[i].change[j].typeName"
             disabled="disabled"
@@ -103,7 +103,6 @@ export default {
         {
           label: "等级",
           value: "level"
-        
         },
         {
           label: "无视",
@@ -164,7 +163,9 @@ export default {
     },
     onChange(e) {
       this.typeNameTransit = e.label;
-      this.typeTransit = e.value;
+   
+      this.typeTransit = e.value[0];
+  
     },
     // onCancel(e) {
     //   console.log(e);
@@ -258,8 +259,6 @@ export default {
         sumAtk = 0;
       }
 
-
-
       var sumMainStatPotential = wx.getStorageSync("sumMainStatPotential");
       if (sumMainStatPotential == null || sumMainStatPotential == "") {
         sumMainStatPotential = 0;
@@ -272,34 +271,37 @@ export default {
       if (sumAtkPotential == null || sumAtkPotential == "") {
         sumAtkPotential = 0;
       }
-         var real = wx.getStorageSync("real");
+      var real = wx.getStorageSync("real");
       if (real == null || real == "") {
         real = 0;
-      } 
+      }
       var igone = wx.getStorageSync("igone");
       if (igone == null || igone == "") {
         igone = 0;
-      } 
+      }
       var list = this.items;
       var atk = 0;
       var atkp = 0;
-      var damage = 0;
+      var damageChange = 0;
       var main = 0;
       var mainP = 0;
       var mainP = 0;
+      var levelChange = 0;
       var resultList = [];
-      var newIgone=igone;
-      for (var i = 0; i < list.length; i++) {
+      var newIgone = igone;
+      for (var i = 0; i < list.length; i++) {   
         atk = 0;
         atkp = 0;
-        damage = 0;
+        damageChange = 0;
         main = 0;
         mainP = 0;
         mainP = 0;
-newIgone=igone;
-        var change = list[i];
+        newIgone = igone;
+        var change = list[i].change;
+
         for (var j = 0; j < change.length; j++) {
           var type = change[j].type;
+      
           var num = change[j].num;
           if (num == null || num == "") {
             num = 0;
@@ -308,58 +310,64 @@ newIgone=igone;
           }
           switch (type) {
             case "atk": {
-              atk += num;
+              atk += parseInt(num);
               break;
             }
             case "atkp": {
-              atk += num;
+              console.log(num)
+              atkp += parseInt(num);
               break;
             }
             case "damage": {
-              atk += num;
+              damageChange += parseInt(num);
               break;
             }
             case "main": {
-              main += num;
+              main += parseInt(num);
               break;
             }
             case "mainP": {
-              mainP += num;
+              mainP += parseInt(num);
+              break;
+            }
+            case "level": {
+              level += parseInt(num);
               break;
             }
             case "igone": {
-              if(num<=0){
-                newIgone=newIgone/(100-num)
-              }else{
-newIgone=newIgone+(1-newIgone*num)
+              if (num <= 0) {
+                newIgone= parseInt(newIgone)-(parseInt(newIgone)-(1-(1-parseInt(newIgone)/(1-parseInt(num)))))
+              } else {
+                newIgone = parseInt(newIgone)+ ((100- parseInt(newIgone)) * (( parseInt(num)) / 100));
 
               }
-              mainP += num;
               break;
             }
           }
         }
         var result = count(
-          level,
+          parseInt(level) + parseInt(levelChange),
           arc,
           mapleWarrior,
-          parseInt(sumMainStat + 1),
+          parseInt(sumMainStat) + parseInt(main),
           sumViecStat,
-          sumAtk,
-          sumMainStatPotential,
+          parseInt(sumAtk) + parseInt(atk),
+          parseInt(sumMainStatPotential) + parseInt(mainP),
           sumViecStatPotential,
-          sumAtkPotential,
+          parseInt(sumAtkPotential) + parseInt(atkp),
           union,
           union2,
           finalDamage,
           bossDamage,
-          damage,
+          parseInt(damage) + parseInt(damageChange),
           crit,
           critDamage,
           coefficient,
           superMain
         );
-        var change = parseInt(result*(300*(1-igone/100)))-parseInt(real*(300*(1-newIgone/100)));
+        var change =
+          parseInt(result * (1-(3 * (1 -  newIgone/ 100)))) -
+          parseInt(real * (1-(3 * (1 -  igone/ 100))));
         resultList.push({ name: list[i].name, result: change });
       }
 
@@ -458,7 +466,6 @@ newIgone=newIgone+(1-newIgone*num)
 }
 .container {
   background: #f8f8fa;
-
 }
 .first_box {
   margin-left: 5rpx;
