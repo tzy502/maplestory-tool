@@ -21,13 +21,16 @@
         <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
         </a>
-                <a href="../../pages/arcresult/main">
-          <div class="box">冒险岛神秘徽章计算</div>
-        </a>
       </div>
-             <a href="../../pages/about/main">
-          <div class="box">关于我们</div>
-        </a>
+      <a href="../../pages/arcresult/main">
+        <div class="box">冒险岛神秘徽章计算</div>
+      </a>
+      <a href="../../pages/weaponback/main">
+        <div class="box">逆推武器所砸的卷</div>
+      </a>
+      <a href="../../pages/about/main">
+        <div class="box">关于我们</div>
+      </a>
     </div>
     <!-- 
       <img src="/static/images/result.png" class="next" background-size="cover" />
@@ -45,7 +48,7 @@ export default {
   },
   mounted: function() {
     var haveDate = wx.getStorageSync("haveDate");
-    if (haveDate==1) {
+    if (haveDate == 1) {
       this.req = "none";
       this.notReq = "";
     }

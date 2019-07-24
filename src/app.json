@@ -1,7 +1,8 @@
 {
     "pages": [
-   
+
         "pages/warring/main",
+        "pages/weaponback/main",
         "pages/arcresult/main",
         "pages/pselect/main",
         "pages/index/main",
@@ -15,7 +16,7 @@
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "MapleStroy工具",
+        "navigationBarTitleText": "MapleStory工具",
         "navigationBarTextStyle": "black"
     },
 
