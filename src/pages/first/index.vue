@@ -26,10 +26,8 @@
           :mode="mode"
           :pickerValueDefault="pickerValueDefault"
           @onChange="onChange"
-          
-        @onConfirm="onConfirm"
-        @onCancel="onCancel"
-
+          @onConfirm="onConfirm"
+          @onCancel="onCancel"
           :pickerValueArray="pickerValueArray"
         ></mpvue-picker>
       </div>
@@ -65,9 +63,25 @@
         <p class="enter_title">无视防御力(实际无视)：</p>
         <input type="number" class="enter_input" v-model="igone" placeholder="请输入数值（不用填写百分号）" />
       </div>
-      <div class="enter">
-        <p class="enter_title">冒险岛勇士：</p>
-        <input type="number" class="enter_input" v-model="mapleWarrior" placeholder="请输入数值" />
+      <div :style="{'display':mapleWarriorHidden}">
+        <div class="enter">
+          <p class="enter_title">冒险岛勇士：</p>
+          <input type="number" class="enter_input" v-model="mapleWarrior" placeholder="请输入数值" />
+        </div>
+      </div>
+      <div :style="{'display':insideHidden}">
+        <div class="enter">
+          <p class="enter_title">内在百分比：</p>
+          <input type="number" class="enter_input" v-model="inside" placeholder="请输入数值" />
+        </div>
+        <div class="enter">
+          <p class="enter_title">全身星星数：</p>
+          <input type="number" class="enter_input" v-model="start" placeholder="请输入数值" />
+        </div>
+        <div class="enter">
+        <p class="enter_title">黑骑士角色卡:</p>
+        <input type="number" class="enter_input" v-model="black" placeholder="请输入数值" />
+      </div>
       </div>
       <div class="enter">
         <p class="enter_title">超级主属性：</p>
@@ -114,11 +128,20 @@ export default {
     this.bossDamage = wx.getStorageSync("bossDamage");
     this.damage = wx.getStorageSync("damage");
     this.igone = wx.getStorageSync("igone");
+    this.avgent = wx.getStorageSync("avgent");
+    this.inside = wx.getStorageSync("inside");
+    this.start = wx.getStorageSync("start");
+        this.black = wx.getStorageSync("black");
     this.pickerValueDefault = [this.value];
+    if (this.avgent == "1") {
+      this.insideHidden = "";
+      this.mapleWarriorHidden = "none";
+      this.pickerValueDefault = [13];
+    }
   },
   data() {
     return {
-        //  label:"",
+      //  label:"",
       mode: "selector",
       pickerValueArray: [
         {
@@ -328,7 +351,7 @@ export default {
       arc: "",
       crit: "",
       critDamage: "",
-      igone:"",
+      igone: "",
       mapleWarrior: "15",
       superMain: "",
       union: "",
@@ -338,7 +361,13 @@ export default {
       value: "",
       finalDamage: "",
       bossDamage: "",
-      damage: ""
+      damage: "",
+      avgent: "",
+      insideHidden: "none",
+      mapleWarriorHidden: "",
+      start: "",
+      black: "",
+      inside: ""
     };
   },
 
@@ -347,19 +376,17 @@ export default {
       this.$refs.mpvuePicker.show();
     },
     onConfirm(e) {
-        if(e.labe!=null||e.labe!=""){
-      this.job = e.label;
-      this.value = e.value;
-      console.log(this.value)
+      if (e.labe != null || e.labe != "") {
+        this.job = e.label;
+        this.value = e.value;
+        console.log(this.value);
       }
     },
     onChange(e) {
- 
-   this.job = e.label;
-
+      this.job = e.label;
     },
     onCancel(e) {
-   this.job ="";
+      this.job = "";
     },
     next() {
       var level = this.level;
@@ -402,7 +429,7 @@ export default {
           }
         });
       }
-            var igone = this.igone;
+      var igone = this.igone;
       if (igone == null || igone == "") {
         wx.setStorage({
           key: "igone",
@@ -662,6 +689,60 @@ export default {
           }
         });
       }
+      var inside = this.inside;
+      if (inside == null || inside == "") {
+        wx.setStorage({
+          key: "inside",
+          data: "",
+          success: function(res) {
+            console.log("异步保存内在百分比成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "inside",
+          data: inside,
+          success: function(res) {
+            console.log("异步保存内在百分比成功");
+          }
+        });
+      }
+      var start = this.start;
+      if (start == null || start == "") {
+        wx.setStorage({
+          key: "start",
+          data: "",
+          success: function(res) {
+            console.log("异步保存星星数成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "start",
+          data: start,
+          success: function(res) {
+            console.log("异步保存星星数成功");
+          }
+        });
+      }
+            var black = this.black;
+      if (black == null || black == "") {
+        wx.setStorage({
+          key: "black",
+          data: "",
+          success: function(res) {
+            console.log("异步保存星星数成功");
+          }
+        });
+      } else {
+        wx.setStorage({
+          key: "black",
+          data: black,
+          success: function(res) {
+            console.log("异步保存星星数成功");
+          }
+        });
+      }
       mpvue.navigateTo({ url: "../../pages/second/main" });
     }
   }
@@ -705,22 +786,20 @@ export default {
   margin-top: 15rpx;
   width: 712rpx;
   height: 122rpx;
-
 }
-.next_box{    
+.next_box {
   margin-left: 19rpx;
-    display: flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;}
-
+  flex-wrap: wrap;
+}
 
 .pannle {
   width: 750rpx;
   background: rgba(255, 255, 255, 1);
   padding-left: 30rpx;
-
 }
 .enter {
   margin-top: 45rpx;

@@ -2,6 +2,7 @@
     "pages": [
 
         "pages/warring/main",
+        "pages/selectJob/main",
         "pages/weaponback/main",
         "pages/arcresult/main",
         "pages/pselect/main",

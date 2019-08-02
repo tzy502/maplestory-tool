@@ -8,8 +8,9 @@
     <div class="first_box">
       <div class="litter_bule"></div>
       <p class="first_content">收益明细</p>
-    </div>
+     
 
+    </div>
     <div class="pannle">
       <div class="online_blue">
         <div class="online-left">
@@ -132,7 +133,8 @@ export default {
       AtkAndMain: "",
       AtkAndMainP: "",
       CritDAndAtkP: "",
-      AtkPAndDamage: ""
+      AtkPAndDamage: "",
+      realMainStat:""
     };
   },
   mounted: function() {
@@ -214,7 +216,7 @@ export default {
         sumAtkPotential += parseInt(AtkPotential);
       }
     }
-    
+      
     var real = count(
       level,
       arc,
@@ -235,12 +237,16 @@ export default {
       coefficient,
       superMain
     );
-
+    var addmainStat=1;
+    var avgent = wx.getStorageSync("avgent");
+    if (avgent == 1) {
+      addmainStat=100
+    }
     var mainStatAddOne = count(
       level,
       arc,
       mapleWarrior,
-      parseInt(sumMainStat + 1),
+      parseInt(sumMainStat + addmainStat),
       sumViecStat,
       sumAtk,
       sumMainStatPotential,
@@ -360,10 +366,14 @@ export default {
     this.AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
     this.AtkUp = (atkAddOne - real).toFixed(1);
     this.MainPUp = (mainStatPotentialAddOne - real).toFixed(1);
-    this.MainUp = (mainStatAddOne - real).toFixed(1);
+    var MainUp = (mainStatAddOne - real).toFixed(1);
+    if (avgent == 1) {
+      MainUp=MainUp/100
+    }
+     this.MainUp=MainUp
     this.CritDUp = (critDamageAddOne - real).toFixed(1);
     this.DamageUp = (damageAddOne - real).toFixed(1);
-    this.AtkAndP = ((AtkPotentialAddOne - real) / (atkAddOne - real)).toFixed(
+    this.AtkAndP = ((AtkPotentialAddOne - real) / MainUp).toFixed(
       1
     );
     this.AtkAndMain = ((atkAddOne - real) / (mainStatAddOne - real)).toFixed(1);

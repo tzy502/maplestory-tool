@@ -10,7 +10,7 @@
       <p class="warring-content">6、你现在所看到的版本排版可能还有点不好看，原因如上</p>
       <p class="warring-content">7、有问题可以在B站冒险岛交流群（957018793）或者b站龙胶水处反馈bug</p>
     </div>
-    <a href="../../pages/index/main" class="next_a">
+    <a href="../../pages/selectJob/main" class="next_a">
       <img src="/static/images/next.png" class="next" background-size="cover" />
     </a>
     <!-- <a href="../../pages/result/main" class="next_a">

@@ -2,15 +2,12 @@
   <div class="container">
     <p class="warring">关于我们</p>
     <div class="introduction">
-      <p class="warring-content">版本V0.9.1 (公测版)</p>
+      <p class="warring-content">版本V0.9.3 (公测版)</p>
       <p class="warring-content">后端：胶水     前段：胶水</p>
       <p class="warring-content">页面设计：无影人(感谢大佬）</p>
       <p class="warring-content">协力：B站冒险岛交流群（957018793）</p>
             <p class="warring-content">bug反馈：B站冒险岛交流群（957018793）；b站：龙胶水</p>
     </div>
-    <a href="../../pages/index/main" class="next_a">
-      <img src="/static/images/next.png" class="next" background-size="cover" />
-    </a>
     <!-- <a href="../../pages/result/main" class="next_a">
       <img src="/static/images/next.png" class="next" background-size="cover" />
     </a>-->
