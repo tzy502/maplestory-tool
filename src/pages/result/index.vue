@@ -373,10 +373,10 @@ export default {
      this.MainUp=MainUp
     this.CritDUp = (critDamageAddOne - real).toFixed(1);
     this.DamageUp = (damageAddOne - real).toFixed(1);
-    this.AtkAndP = ((AtkPotentialAddOne - real) / MainUp).toFixed(
+    this.AtkAndP = (AtkPUp / AtkUp).toFixed(
       1
     );
-    this.AtkAndMain = ((atkAddOne - real) / (mainStatAddOne - real)).toFixed(1);
+    this.AtkAndMain = (AtkUp/ MainUp).toFixed(1);
     this.AtkAndMainP = (
       (AtkPotentialAddOne - real) /
       (mainStatPotentialAddOne - real)
