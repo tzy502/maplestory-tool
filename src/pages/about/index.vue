@@ -2,7 +2,7 @@
   <div class="container">
     <p class="warring">关于我们</p>
     <div class="introduction">
-      <p class="warring-content">版本V0.9.3 (公测版)</p>
+      <p class="warring-content">版本V0.9.4.2 (公测版)</p>
       <p class="warring-content">后端：胶水     前段：胶水</p>
       <p class="warring-content">页面设计：无影人(感谢大佬）</p>
       <p class="warring-content">协力：B站冒险岛交流群（957018793）</p>

@@ -363,8 +363,10 @@ export default {
       superMain
     );
 
-    this.AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
-    this.AtkUp = (atkAddOne - real).toFixed(1);
+    var AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
+    this.AtkPUp=AtkPUp;
+    var AtkUp = (atkAddOne - real).toFixed(1);
+    this.AtkUp=AtkUp;
     this.MainPUp = (mainStatPotentialAddOne - real).toFixed(1);
     var MainUp = (mainStatAddOne - real).toFixed(1);
     if (avgent == 1) {
