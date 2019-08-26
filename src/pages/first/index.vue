@@ -65,7 +65,7 @@
       </div>
       <div :style="{'display':mapleWarriorHidden}">
         <div class="enter">
-          <p class="enter_title">冒险岛勇士：</p>
+          <p class="enter_title">冒险岛勇士(技能提升百分比)：</p>
           <input type="number" class="enter_input" v-model="mapleWarrior" placeholder="请输入数值" />
         </div>
       </div>
@@ -84,7 +84,7 @@
       </div>
       </div>
       <div class="enter">
-        <p class="enter_title">超级主属性：</p>
+        <p class="enter_title">超级技能主属性：</p>
         <input type="number" class="enter_input" v-model="superMain" placeholder="请输入数值" />
       </div>
       <div class="enter">
