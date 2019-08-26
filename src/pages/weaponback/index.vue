@@ -35,6 +35,10 @@
         <input type="number" class="enter_input" v-model="usage" placeholder="请输入数值" />
       </div>
       <div class="enter">
+        <p class="enter_title">平均卷功：</p>
+        <p class="enter_input">{{avgatk}}</p>
+        <p class="enter_title">平均卷主属性：</p>
+        <p class="enter_input">{{avgmain}}</p>
         <p class="enter_title">可能砸的卷：</p>
         <p class="enter_input">{{maybe}}</p>
       </div>
@@ -65,6 +69,8 @@ export default {
       originalmains: "",
       usage: "",
       maybe: "",
+      avgatk:"",
+      avgmain:"",
       starList: [
         {
           star: "25",
@@ -302,26 +308,24 @@ export default {
 
   methods: {
     analyse() {
-   
       var totalatk = this.totalatk;
       var originalatk = this.originalatk;
       var star = this.star;
-        if (star == null || star == "") {
-      star = 0;
-    }
+      if (star == null || star == "") {
+        star = 0;
+      }
       var totalmains = this.totalmains;
       var originalmains = this.originalmains;
       var usage = this.usage;
       var map = new Map();
       var starList = this.starList;
-      var level=this.level;
-              if (level == null || level == "") {
-      level = 0;
-    }
+      var level = this.level;
+      if (level == null || level == "") {
+        level = 0;
+      }
       for (var i = 0; i < starList.length; i++) {
         var addList = starList[i].addList;
         for (var j = 0; j < addList.length; j++) {
-      
           if (addList[j].level == level) {
             map.set(starList[i].star, addList[j].atkAdd);
           }
@@ -329,147 +333,130 @@ export default {
       }
       if (star > 15) {
         for (star; star > 15; star--) {
-    
           totalatk = totalatk - map.get(star);
           totalmains = totalmains - (level / 5 - 19);
         }
       }
       for (star; star > 0; star--) {
-             
-        var x = Math.floor(totalatk / 50)+1;
-        var y = Math.floor((totalatk - Math.floor(totalatk / 50)) / 50)+1;
+        var x = Math.floor(totalatk / 50) + 1;
+        var y = Math.floor((totalatk - Math.floor(totalatk / 50)) / 50) + 1;
         if (x == y) {
-          console.log("x"+x)
+          console.log("x" + x);
           totalatk = totalatk - x;
         } else {
-              console.log("y"+y)
+          console.log("y" + y);
           totalatk = totalatk - y;
         }
-              console.log("totalatk"+totalatk)
+        console.log("totalatk" + totalatk);
         if (15 >= star && star > 5) {
           totalmains = totalmains - 3;
         } else if (5 >= star && star > 0) {
           totalmains = totalmains - 2;
         }
       }
-     console.log(totalatk)
+      console.log(totalatk);
       var avgatk = (totalatk - originalatk) / usage;
       var avgmain = (totalmains - originalmains) / usage;
-      console.log("avgatk"+avgatk)
-          console.log("avgmain"+avgmain)
+      this.avgatk=avgatk;
+      this.avgmain=avgmain;
+      console.log("avgatk" + avgatk);
+      console.log("avgmain" + avgmain);
       if (avgatk == 13) {
         this.maybe = "究极黑暗卷轴";
-   
       }
       if (avgatk == 12) {
         if (avgmain == 10) {
           this.maybe = "V卷";
-              return;
+          return;
         } else {
           if (avgmain == 8) {
             this.maybe = "达到了上限的X卷";
-                return;
+            return;
           } else {
             this.maybe = "可能是x v 究极黑暗的混砸";
-                return;
+            return;
           }
         }
-   
       }
       if (12 >= avgatk && avgatk > 9) {
         if (avgmain == 8) {
           this.maybe = "X卷";
-              return;
+          return;
         } else {
           if (avgmain == 0) {
             this.maybe = "星火";
-                return;
+            return;
           } else {
             this.maybe = "混卷";
-                return;
+            return;
           }
         }
-
-   
       }
       if (avgatk == 9) {
         if (avgmain == 8) {
           this.maybe = "脸黑的X卷";
-              return;
+          return;
         }
         if (avgmain == 3) {
           this.maybe = "惊人";
-              return;
+          return;
         } else {
           this.maybe = "混卷";
-              return;
+          return;
         }
-   
       }
       if (avgatk == 7) {
         if (avgmain == 3) {
           this.maybe = "15痕迹";
-              return;
+          return;
         }
         if (avgmain == 5) {
           this.maybe = "宿命正义";
-              return;
+          return;
         } else {
           this.maybe = "混卷";
-              return;
+          return;
         }
-
-   
       }
       if (avgatk == 7) {
         if (avgmain == 3) {
           this.maybe = "15痕迹 极小可能pb";
-              return;
+          return;
         }
         if (avgmain == 5) {
           this.maybe = "宿命正义";
-              return;
+          return;
         } else {
           this.maybe = "混卷";
-              return;
+          return;
         }
-
-   
       }
- 
+
       if (avgatk == 5) {
-            
         if (avgmain == 2) {
           this.maybe = "30痕迹";
           return;
         }
-   
       }
       if (avgatk == 4) {
         if (avgmain == 2) {
           this.maybe = "70痕迹";
-              return;
+          return;
         }
-
-   
       }
       if (avgatk == 3) {
         if (avgmain == 2) {
           this.maybe = "100痕迹";
-              return;
+          return;
         }
-
-   
       }
       if (avgatk >= 3 && avgatk <= 8) {
         if (avgmain == 3) {
           this.maybe = "pb卷";
-              return;
+          return;
         }
-
-   
       }
-        this.maybe = "混卷";
+      this.maybe = "混卷";
     }
   }
 };
