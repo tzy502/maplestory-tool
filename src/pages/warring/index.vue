@@ -25,7 +25,9 @@ export default {
     return {};
   },
 
-  methods: {}
+  mounted: function() {
+   
+  }
 };
 </script>
 

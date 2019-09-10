@@ -21,7 +21,13 @@
         <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
         </a>
+                <a href="../../pages/line/main">
+          <div class="box">冒险岛潜能收益折线图</div>
+        </a>
       </div>
+         <a href="../../pages/igroneCount/main">
+          <div class="box">真实无视计算</div>
+        </a>
       <a href="../../pages/arcresult/main">
         <div class="box">冒险岛神秘徽章计算</div>
       </a>

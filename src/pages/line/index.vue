@@ -1,11 +1,19 @@
 <template>
   <div class="container">
-    <p class="warring">潜能提升柱状图</p>
+    <p class="warring">潜能提升折线图</p>
     <div class="introduction">
       <div class="wrap">
         <mpvue-echarts :echarts="echarts" :onInit="ecBarInit" canvasId="bar" />
       </div>
     </div>
+       <p class="warring">横坐标含义</p>
+          <p class="result-title">{{nameList}}</p>
+        <li v-for="eq in nameList" :key="eq">
+                 <p class="warring">1</p>
+         <div class="online-right">
+          <p class="result-title">{{nameList}}单排</p>
+        </div>
+        </li>
   </div>
 </template>
 
@@ -16,6 +24,7 @@ import { count } from "../../utils/count.js";
 export default {
   data() {
     return {
+      nameList:[],
       resultList: [],
       name: [],
       date: [],
@@ -102,10 +111,11 @@ export default {
         if (igone == null || igone == "") {
           igone = 0;
         }
-        var changeList = [3, 6, 9, 12, 15, 18];
+        var changeList = [3, 6, 9, 12, 15, 18, 27, 30];
         var list = [];
+        var atkChane = [];
+        var nameList = [[], [], [], [], [], [], [], []];
         for (var i = 0; i < changeList.length; i++) {
-          
           var result = count(
             level,
             arc,
@@ -130,9 +140,12 @@ export default {
             parseInt(result * (1 - 3 * (1 - igone / 100))) -
             parseInt(real * (1 - 3 * (1 - igone / 100)));
           var name = +changeList[i] + "%攻击";
-
-          list.push({ name: name, change: change });
+          atkChane.push(change);
+          nameList[i].push(name);
+          // list.push({ name: name,change });
         }
+        list.push(atkChane);
+        var mainChane = [];
         for (var i = 0; i < changeList.length; i++) {
           var result = count(
             level,
@@ -158,9 +171,11 @@ export default {
             parseInt(result * (1 - 3 * (1 - igone / 100))) -
             parseInt(real * (1 - 3 * (1 - igone / 100)));
           var name = changeList[i] + "%主属性";
-
-          list.push({ name: name, change: change });
+          mainChane.push(change);
+          nameList[i].push(name);
         }
+        list.push(mainChane);
+        var damageList = [];
         for (var i = 0; i < changeList.length; i++) {
           var result = count(
             level,
@@ -187,9 +202,12 @@ export default {
             parseInt(real * (1 - 3 * (1 - igone / 100)));
 
           var name = changeList[i] + "%伤害";
-          list.push({ name: name, change: change });
+          damageList.push(change);
+          nameList[i].push(name);
         }
-        changeList = [20, 30, 35, 40, 60, 70];
+        list.push(damageList);
+        var bossList = [];
+        changeList = [20, 30, 35, 40, 60, 70,80,120];
         for (var i = 0; i < changeList.length; i++) {
           var result = count(
             level,
@@ -215,50 +233,32 @@ export default {
             parseInt(result * (1 - 3 * (1 - igone / 100))) -
             parseInt(real * (1 - 3 * (1 - igone / 100)));
           var name = changeList[i] + "%boss伤害";
-          list.push({ name: name, change: change });
+          bossList.push(change);
+          nameList[i].push(name);
         }
+        list.push(bossList);
+        var igoneList = [];
         changeList = [15, 20, 30, 35, 40, 45];
         for (var i = 0; i < changeList.length; i++) {
-          var newIgone = parseInt(igone)+ ((100- parseInt(igone)) * (( parseInt(changeList[i])) / 100));
-          if(newIgone>=100){
-            newIgone=100
+          var newIgone =
+            parseInt(igone) +
+            (100 - parseInt(igone)) * (parseInt(changeList[i]) / 100);
+          if (newIgone >= 100) {
+            newIgone = 100;
           }
-    
+
           var change =
             parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
             parseInt(real * (1 - 3 * (1 - igone / 100)));
           var name = changeList[i] + "%无视";
-          list.push({ name: name, change: change });
+          igoneList.push(change);
+          nameList[i].push(name);
         }
-        
-
-       var newIgone = parseInt(igone)+ (100- parseInt(igone)) * 0.15;
-       newIgone = parseInt(newIgone)+ (100- parseInt(newIgone)) * 0.15;
-       console.log(newIgone)
-         if(newIgone>=100){
-            newIgone=100
-          }
-        var change =
-          parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
-          parseInt(real * (1 - 3 * (1 - igone / 100)));
-        var name = "双15%无视";
-        list.push({ name: name, change: change });
-        var nameList = [];
-        var dateList = [];
-        for (var i = 0; i < list.length; i++) {
-          for (var j = i; j < list.length; j++) {
-            if (list[i].change > list[j].change) {
-              var temp = list[i];
-              list[i] = list[j];
-              list[j] = temp;
-            }
-          }
-        }
-        for (var i = 1; i < list.length; i++) {
-          nameList.push(list[i].name);
-          dateList.push(list[i].change);
-        }
-        barChart.setOption(getBarOption(nameList, dateList));
+        list.push(igoneList);
+    
+        this.nameList=nameList;
+console.log(this.nameList)
+        barChart.setOption(getBarOption(this.nameList, list));
         return barChart;
       }
     };
@@ -281,14 +281,34 @@ function getBarOption(name, date) {
         type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
       }
     },
+    legend: {
+      data: ["攻击", "主属性", "伤害", "BOSS伤害", "无视"]
+    },
+
     grid: {
       left: "10rpx",
       right: "10rpx",
       bottom: "10rpx",
-      top: "10rpx",
+      top: "55rpx",
       containLabel: true
     },
-    xAxis: [
+    dataZoom: [
+      // {
+      // height: 1,
+      // show: true,
+      // realtime: true,
+      // start: 0,
+      // end: 50
+      // },
+      // {
+      // show: true,
+      //type: 'slider',
+      // realtime: true,
+      // start: 0,
+      // end: 50
+      // }
+    ],
+    yAxis: [
       {
         type: "value",
         axisLine: {
@@ -301,11 +321,11 @@ function getBarOption(name, date) {
         }
       }
     ],
-    yAxis: [
+    xAxis: [
       {
         type: "category",
-        axisTick: { show: false },
-        data: name,
+                data: name,
+        axisTick: { show: true },
         axisLine: {
           lineStyle: {
             color: "#999"
@@ -318,15 +338,60 @@ function getBarOption(name, date) {
     ],
     series: [
       {
-        name: "提升",
-        type: "bar",
-        stack: "总量",
+        name: "攻击",
+        type: "line",
+           color: "red",
         label: {
-          normal: {
-            show: true
-          }
+          // normal: {
+          //   show: true
+          // }
         },
-        data: date
+        data: date[0]
+      },
+      {
+        name: "主属性",
+        type: "line",
+ color: "black",
+        label: {
+          // normal: {
+          //   show: true
+          // }
+        },
+        data: date[1]
+      },
+
+      {
+        name: "伤害",
+        type: "line",
+color: "pink",
+        label: {
+          // normal: {
+          //   show: true
+          // }
+        },
+        data: date[2]
+      },
+      {
+        name: "BOSS伤害",
+        type: "line",
+color: "yellow",
+        label: {
+          // normal: {
+          //   show: true
+          // }
+        },
+        data: date[3]
+      },
+      {
+        name: "无视",
+        type: "line",
+color: "green",
+        label: {
+          // normal: {
+          //   show: true
+          // }
+        },
+        data: date[4]
       }
     ]
   };
@@ -339,7 +404,7 @@ function getBarOption(name, date) {
 }
 .wrap {
   width: 100%;
-  height: 1500rpx;
+  height: 800rpx;
 }
 .introduction {
   margin-top: 30rpx;
@@ -357,5 +422,31 @@ function getBarOption(name, date) {
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
+}
+.online-left {
+  width: 250rpx;
+
+  border-right: 1px solid #eaeaea;
+}
+.online-right {
+  width: 490rpx;
+}
+.online_blue {
+  height: 80rpx;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+}
+.online_w {
+  height: 80rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+.result-title {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
 }
 </style>

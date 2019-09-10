@@ -7,6 +7,7 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -114,7 +115,7 @@ function getBarOption(name, date) {
 }
 .wrap {
   width: 100%;
-  height: 400px;
+  height: 400rpx;
 }
 .introduction {
   margin-top: 30rpx;

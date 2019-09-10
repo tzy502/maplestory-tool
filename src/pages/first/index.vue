@@ -61,7 +61,7 @@
       </div>
       <div class="enter">
         <p class="enter_title">无视防御力(实际无视)：</p>
-        <input type="number" class="enter_input" v-model="igone" placeholder="请输入数值（不用填写百分号）" />
+        <input type="number" class="enter_input_long" v-model="igone" placeholder="请输入数值（不用填写百分号）,不了解者有计算工具" />
       </div>
       <div :style="{'display':mapleWarriorHidden}">
         <div class="enter">

@@ -1,7 +1,10 @@
 {
     "pages": [
-
+        
         "pages/warring/main",
+        "pages/line/main",
+    
+        "pages/igroneCount/main",
         "pages/selectJob/main",
         "pages/weaponback/main",
         "pages/arcresult/main",
