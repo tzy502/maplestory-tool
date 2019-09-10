@@ -1,19 +1,11 @@
 <template>
   <div class="container">
-    <p class="warring">潜能提升折线图</p>
+    <p class="warring">潜能提升折线图（建议大屏幕设备使用）</p>
     <div class="introduction">
       <div class="wrap">
         <mpvue-echarts :echarts="echarts" :onInit="ecBarInit" canvasId="bar" />
       </div>
     </div>
-       <p class="warring">横坐标含义</p>
-          <p class="result-title">{{nameList}}</p>
-        <li v-for="eq in nameList" :key="eq">
-                 <p class="warring">1</p>
-         <div class="online-right">
-          <p class="result-title">{{nameList}}单排</p>
-        </div>
-        </li>
   </div>
 </template>
 
@@ -24,7 +16,7 @@ import { count } from "../../utils/count.js";
 export default {
   data() {
     return {
-      nameList:[],
+      nameList: [],
       resultList: [],
       name: [],
       date: [],
@@ -207,7 +199,7 @@ export default {
         }
         list.push(damageList);
         var bossList = [];
-        changeList = [20, 30, 35, 40, 60, 70,80,120];
+        changeList = [20, 30, 35, 40, 60, 70, 80, 120];
         for (var i = 0; i < changeList.length; i++) {
           var result = count(
             level,
@@ -254,11 +246,19 @@ export default {
           igoneList.push(change);
           nameList[i].push(name);
         }
+        var nameDate = [];
         list.push(igoneList);
-    
-        this.nameList=nameList;
-console.log(this.nameList)
-        barChart.setOption(getBarOption(this.nameList, list));
+        for (var i = 0; i < nameList.length; i++) {
+          var name = "";
+          for (var j = 0; j < nameList[i].length; j++) {
+            name += nameList[i][j];
+            name += "\n";
+          }
+          nameDate.push(name);
+        }
+        console.log(nameDate);
+        this.nameList = nameList;
+        barChart.setOption(getBarOption(nameDate, list));
         return barChart;
       }
     };
@@ -289,27 +289,14 @@ function getBarOption(name, date) {
       left: "10rpx",
       right: "10rpx",
       bottom: "10rpx",
-      top: "55rpx",
+      top: "80rpx",
       containLabel: true
     },
     dataZoom: [
-      // {
-      // height: 1,
-      // show: true,
-      // realtime: true,
-      // start: 0,
-      // end: 50
-      // },
-      // {
-      // show: true,
-      //type: 'slider',
-      // realtime: true,
-      // start: 0,
-      // end: 50
-      // }
-    ],
+     ],
     yAxis: [
       {
+        name: "提升",
         type: "value",
         axisLine: {
           lineStyle: {
@@ -324,7 +311,7 @@ function getBarOption(name, date) {
     xAxis: [
       {
         type: "category",
-                data: name,
+        data: name,
         axisTick: { show: true },
         axisLine: {
           lineStyle: {
@@ -340,7 +327,7 @@ function getBarOption(name, date) {
       {
         name: "攻击",
         type: "line",
-           color: "red",
+        color: "red",
         label: {
           // normal: {
           //   show: true
@@ -351,7 +338,7 @@ function getBarOption(name, date) {
       {
         name: "主属性",
         type: "line",
- color: "black",
+        color: "black",
         label: {
           // normal: {
           //   show: true
@@ -363,7 +350,7 @@ function getBarOption(name, date) {
       {
         name: "伤害",
         type: "line",
-color: "pink",
+        color: "pink",
         label: {
           // normal: {
           //   show: true
@@ -374,7 +361,7 @@ color: "pink",
       {
         name: "BOSS伤害",
         type: "line",
-color: "yellow",
+        color: "Sienna",
         label: {
           // normal: {
           //   show: true
@@ -385,7 +372,7 @@ color: "yellow",
       {
         name: "无视",
         type: "line",
-color: "green",
+        color: "green",
         label: {
           // normal: {
           //   show: true

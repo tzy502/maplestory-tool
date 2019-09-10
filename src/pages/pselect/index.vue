@@ -102,10 +102,9 @@ export default {
         if (igone == null || igone == "") {
           igone = 0;
         }
-        var changeList = [3, 6, 9, 12, 15, 18];
+        var changeList = [3, 6, 9, 12, 15, 18,24,21];
         var list = [];
         for (var i = 0; i < changeList.length; i++) {
-          
           var result = count(
             level,
             arc,
@@ -189,7 +188,7 @@ export default {
           var name = changeList[i] + "%伤害";
           list.push({ name: name, change: change });
         }
-        changeList = [20, 30, 35, 40, 60, 70];
+        changeList = [20, 30, 35, 40, 60, 70, 80];
         for (var i = 0; i < changeList.length; i++) {
           var result = count(
             level,
@@ -219,25 +218,27 @@ export default {
         }
         changeList = [15, 20, 30, 35, 40, 45];
         for (var i = 0; i < changeList.length; i++) {
-          var newIgone = parseInt(igone)+ ((100- parseInt(igone)) * (( parseInt(changeList[i])) / 100));
-          if(newIgone>=100){
-            newIgone=100
+          var newIgone =
+            parseInt(igone) +
+            (100 - parseInt(igone)) * (parseInt(changeList[i]) / 100);
+          if (newIgone >= 100) {
+            newIgone = 100;
           }
-    
+
           var change =
             parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
             parseInt(real * (1 - 3 * (1 - igone / 100)));
           var name = changeList[i] + "%无视";
           list.push({ name: name, change: change });
         }
-        
 
-       var newIgone = parseInt(igone)+ (100- parseInt(igone)) * 0.15;
-       newIgone = parseInt(newIgone)+ (100- parseInt(newIgone)) * 0.15;
-       console.log(newIgone)
-         if(newIgone>=100){
-            newIgone=100
-          }
+        var newIgone = parseInt(igone) + (100 - parseInt(igone)) * 0.15;
+            console.log(newIgone);
+        newIgone = newIgone + (100 - newIgone) * 0.15;
+        console.log(newIgone);
+        if (newIgone >= 100) {
+          newIgone = 100;
+        }
         var change =
           parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
           parseInt(real * (1 - 3 * (1 - igone / 100)));
@@ -256,7 +257,7 @@ export default {
         }
         for (var i = 1; i < list.length; i++) {
           nameList.push(list[i].name);
-          dateList.push(list[i].change);
+          dateList.push((list[i].change / real * 100).toFixed(2));
         }
         barChart.setOption(getBarOption(nameList, dateList));
         return barChart;
@@ -290,6 +291,7 @@ function getBarOption(name, date) {
     },
     xAxis: [
       {
+        name: "提升百分比",
         type: "value",
         axisLine: {
           lineStyle: {
@@ -326,7 +328,16 @@ function getBarOption(name, date) {
             show: true
           }
         },
-        data: date
+        data: date,
+        itemStyle: {
+          normal: {
+            label: {
+              formatter: function(a) {         
+                return a.value + "%";
+              }
+            }
+          }
+        }
       }
     ]
   };
@@ -339,7 +350,7 @@ function getBarOption(name, date) {
 }
 .wrap {
   width: 100%;
-  height: 1500rpx;
+  height: 2000rpx;
 }
 .introduction {
   margin-top: 30rpx;
