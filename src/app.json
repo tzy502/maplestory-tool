@@ -1,6 +1,8 @@
 {
     "pages": [
-    
+        "pages/xenonFirst/main",
+        "pages/xenonSecond/main",
+
         "pages/warring/main",
         "pages/line/main",
         "pages/pselect/main",
