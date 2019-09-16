@@ -6,7 +6,10 @@
         <div @click="normal" class="box">通常职业</div>
       </a>
       <a href="../../pages/index/main">
-        <div @click="avgent" class="box">恶魔复仇者(四转后）(测试版）</div>
+        <div @click="avgent" class="box">恶魔复仇者（四转后）（测试版）</div>
+      </a>
+      <a href="../../pages/xenonIndex/main">
+        <div @click="avgent" class="box">尖兵（测试版）</div>
       </a>
     </div>
     <!-- 

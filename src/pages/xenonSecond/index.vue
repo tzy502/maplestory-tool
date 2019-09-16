@@ -1947,7 +1947,7 @@ export default {
             data: true,
             success: function(res) {}
           });
-          mpvue.navigateTo({ url: "../../pages/result/main" });
+          mpvue.navigateTo({ url: "../../pages/xenonResult/main" });
         }
       });
     }

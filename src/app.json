@@ -1,10 +1,11 @@
 {
     "pages": [
-        "pages/xenonFirst/main",
-        "pages/xenonSecond/main",
-
         "pages/warring/main",
         "pages/line/main",
+        "pages/xenonFirst/main",
+        "pages/xenonSecond/main",
+        "pages/xenonResult/main",
+        "pages/xenonIndex/main",
         "pages/pselect/main",
         "pages/igroneCount/main",
         "pages/selectJob/main",
