@@ -9,7 +9,7 @@
         <div @click="avgent" class="box">恶魔复仇者（四转后）（测试版）</div>
       </a>
       <a href="../../pages/xenonIndex/main">
-        <div @click="avgent" class="box">尖兵（测试版）</div>
+        <div @click="xenon" class="box">尖兵（测试版）</div>
       </a>
     </div>
     <!-- 
@@ -34,6 +34,15 @@ export default {
         data: 1,
         success: function(res) {
           console.log("设置为复仇者职业");
+        }
+      });
+    },
+        xenon() {
+      wx.setStorage({
+        key: "avgent",
+        data: 2,
+        success: function(res) {
+          console.log("设置为尖兵");
         }
       });
     },

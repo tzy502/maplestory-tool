@@ -19,13 +19,14 @@
 </template>
 
 <script>
+import { conncent } from "../../utils/conncent.js";
 export default {
   data() {
     return {};
   },
 
   mounted: function() {
-   
+   conncent()
   }
 };
 </script>

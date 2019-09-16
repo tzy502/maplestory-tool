@@ -6,6 +6,7 @@ App.mpType = 'app'
 mpvueToastRegistry(Vue)
 const app = new Vue(App)
 app.$mount()
+Vue.prototype.globalData = getApp().globalData
 export default {
 }
 wx.cloud.init({
