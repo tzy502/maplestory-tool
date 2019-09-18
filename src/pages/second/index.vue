@@ -89,6 +89,7 @@
 
 <script>
 import mptoast from "mptoast";
+import { conncent } from "../../utils/conncent.js";
 export default {
   components: {
     mptoast
@@ -1535,6 +1536,7 @@ export default {
             data: true,
             success: function(res) {}
           });
+          conncent();
           mpvue.navigateTo({ url: "../../pages/result/main" });
         }
       });

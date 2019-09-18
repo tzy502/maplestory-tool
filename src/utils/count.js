@@ -31,7 +31,6 @@ var count = function (level, arc, mapleWarrior, sumMainStat, sumViecStat, sumAtk
         //  + parseInt(superMain)
         // var trueMaxHp = (parseInt(sumMainStat) / 2 + parseInt(union) / 2 + startHp) * (1 + parseInt(sumMainStatPotential) / 100 +parseInt(inside)/100 +parseInt(superMain)/100) + parseInt(arc) * 175+ parseInt(union2)
         var tableHp = ((parseInt(level) * 90 + 535) + (parseInt(sumMainStat) / 2) + (parseInt(union) / 2) + startHp) * (1 + parseInt(black) / 100 + parseInt(sumMainStatPotential) / 100 + parseInt(inside) / 100 + parseInt(superMain) / 100) + parseInt(arc) * 175 + parseInt(union2)
-
         var realMainStat = baseMaxHp + 0.8 * (tableHp - baseMaxHp)
     } else {
         var realMainStat = (((parseInt(level) * 5 + 18) * (1 + parseInt(mapleWarrior) / 100) + parseInt(sumMainStat) + parseInt(union)) * (1 + parseInt(sumMainStatPotential) / 100)) + parseInt(arc) * 10 + parseInt(union2) + parseInt(superMain)

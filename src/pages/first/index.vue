@@ -131,7 +131,7 @@ export default {
     this.avgent = wx.getStorageSync("avgent");
     this.inside = wx.getStorageSync("inside");
     this.start = wx.getStorageSync("start");
-        this.black = wx.getStorageSync("black");
+    this.black = wx.getStorageSync("black");
     this.pickerValueDefault = [this.value];
     if (this.avgent == "1") {
       this.insideHidden = "";

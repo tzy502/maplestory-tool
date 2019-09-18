@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import { conncent } from "../../utils/conncent.js";
 import mptoast from "mptoast";
 export default {
   components: {
@@ -1947,6 +1948,7 @@ export default {
             data: true,
             success: function(res) {}
           });
+          conncent();
           mpvue.navigateTo({ url: "../../pages/xenonResult/main" });
         }
       });

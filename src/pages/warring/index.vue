@@ -19,14 +19,66 @@
 </template>
 
 <script>
-import { conncent } from "../../utils/conncent.js";
+
 export default {
   data() {
     return {};
   },
 
   mounted: function() {
-   conncent()
+
+    wx.showLoading({
+      title: "启动配置ing……"
+    });
+    var openId = wx.getStorageSync("openId");
+    var code;
+    wx.login({
+      //获取code
+
+      success: function(res) {
+        code = res.code; //返回code
+        console.log(code);
+        var code = {
+          code: code
+        };
+        wx.request({
+          url: "http://127.0.0.1:9333/api/base/openId",
+          method: "Post",
+          data: code,
+          headers: {
+            "content-type": "application/json" // 默认值
+          },
+          success: function(res) {
+            var data = res.data;
+            if (openId != data.data) {
+              wx.setStorage({
+                key: "openId",
+                data: data.data,
+                success: function(res) {
+                  console.log("设置openId");
+                  var openId = {
+                    openId: data.data
+                  };
+                  wx.request({
+                    url: "http://127.0.0.1:9333/api/base/openidRegister",
+                    method: "Post",
+                    data: openId,
+                    headers: {
+                      "content-type": "application/json" // 默认值
+                    },
+                    success: function(res) {
+             
+                    }
+                  });
+                }
+              });
+            }
+          }
+        });
+
+        wx.hideLoading();
+      }
+    });
   }
 };
 </script>
@@ -83,3 +135,4 @@ export default {
   border-radius: 10%;
 }
 </style>
+

@@ -120,6 +120,7 @@
 
 <script>
 import { count } from "../../utils/count.js";
+import { conncent } from "../../utils/conncent.js";
 export default {
   data() {
     return {
@@ -138,6 +139,7 @@ export default {
     };
   },
   mounted: function() {
+    conncent();
     var level = wx.getStorageSync("level");
     var arc = wx.getStorageSync("arc");
     var crit = wx.getStorageSync("crit");
