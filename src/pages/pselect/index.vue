@@ -13,6 +13,7 @@
 import * as echarts from "echarts/dist/echarts.min";
 import mpvueEcharts from "mpvue-echarts";
 import { count } from "../../utils/count.js";
+import { barChange } from "../../utils/conncent.js";
 export default {
   data() {
     return {
@@ -26,241 +27,23 @@ export default {
           height: height
         });
         canvas.setChart(barChart);
-        var level = wx.getStorageSync("level");
-        var arc = wx.getStorageSync("arc");
-        var crit = wx.getStorageSync("crit");
-        if (crit == null || crit == "") {
-          crit = 0;
-        }
-        var critDamage = wx.getStorageSync("critDamage");
-        if (critDamage == null || critDamage == "") {
-          critDamage = 0;
-        }
-        var mapleWarrior = wx.getStorageSync("mapleWarrior");
-        if (mapleWarrior == null || mapleWarrior == "") {
-          mapleWarrior = 15;
-        }
-        var superMain = wx.getStorageSync("superMain");
-        if (superMain == null || superMain == "") {
-          superMain = 0;
-        }
-        var union = wx.getStorageSync("union");
-        if (union == null || union == "") {
-          union = 0;
-        }
-        var union2 = wx.getStorageSync("union2");
-        if (union2 == null || union2 == "") {
-          union2 = 0;
-        }
-        var job = wx.getStorageSync("job");
-        var coefficient = wx.getStorageSync("coefficient");
-        if (coefficient == null || coefficient == "") {
-          coefficient = 1.0;
-        }
-        var value = wx.getStorageSync("value");
-        var finalDamage = wx.getStorageSync("finalDamage");
-        if (finalDamage == null || finalDamage == "") {
-          finalDamage = 0;
-        }
-        var bossDamage = wx.getStorageSync("bossDamage");
-        if (bossDamage == null || bossDamage == "") {
-          bossDamage = 0;
-        }
-        var damage = wx.getStorageSync("damage");
-        if (damage == null || damage == "") {
-          damage = 0;
-        }
-        var sumMainStat = wx.getStorageSync("sumMainStat");
-        if (sumMainStat == null || sumMainStat == "") {
-          sumMainStat = 0;
-        }
-        var sumViecStat = wx.getStorageSync("sumViecStat");
-        if (sumViecStat == null || sumViecStat == "") {
-          sumViecStat = 0;
-        }
-        var sumAtk = wx.getStorageSync("sumAtk");
-        if (sumAtk == null || sumAtk == "") {
-          sumAtk = 0;
-        }
-        var sumMainStatPotential = wx.getStorageSync("sumMainStatPotential");
-        if (sumMainStatPotential == null || sumMainStatPotential == "") {
-          sumMainStatPotential = 0;
-        }
-        var sumViecStatPotential = wx.getStorageSync("sumViecStatPotential");
-        if (sumViecStatPotential == null || sumViecStatPotential == "") {
-          sumViecStatPotential = 0;
-        }
-        var sumAtkPotential = wx.getStorageSync("sumAtkPotential");
-        if (sumAtkPotential == null || sumAtkPotential == "") {
-          sumAtkPotential = 0;
-        }
-        var real = wx.getStorageSync("real");
-        if (real == null || real == "") {
-          real = 0;
-        }
-        var igone = wx.getStorageSync("igone");
-        if (igone == null || igone == "") {
-          igone = 0;
-        }
-        var changeList = [3, 6, 9, 12, 15, 18,24,21];
         var list = [];
-        for (var i = 0; i < changeList.length; i++) {
-          var result = count(
-            level,
-            arc,
-            mapleWarrior,
-            sumMainStat,
-            sumViecStat,
-            sumAtk,
-            sumMainStatPotential,
-            sumViecStatPotential,
-            parseInt(sumAtkPotential) + parseInt(changeList[i]),
-            union,
-            union2,
-            finalDamage,
-            bossDamage,
-            damage,
-            crit,
-            critDamage,
-            coefficient,
-            superMain
-          );
-          var change =
-            parseInt(result * (1 - 3 * (1 - igone / 100))) -
-            parseInt(real * (1 - 3 * (1 - igone / 100)));
-          var name = +changeList[i] + "%攻击";
-
-          list.push({ name: name, change: change });
-        }
-        for (var i = 0; i < changeList.length; i++) {
-          var result = count(
-            level,
-            arc,
-            mapleWarrior,
-            sumMainStat,
-            sumViecStat,
-            sumAtk,
-            parseInt(sumMainStatPotential) + parseInt(changeList[i]),
-            sumViecStatPotential,
-            sumAtkPotential,
-            union,
-            union2,
-            finalDamage,
-            bossDamage,
-            damage,
-            crit,
-            critDamage,
-            coefficient,
-            superMain
-          );
-          var change =
-            parseInt(result * (1 - 3 * (1 - igone / 100))) -
-            parseInt(real * (1 - 3 * (1 - igone / 100)));
-          var name = changeList[i] + "%主属性";
-
-          list.push({ name: name, change: change });
-        }
-        for (var i = 0; i < changeList.length; i++) {
-          var result = count(
-            level,
-            arc,
-            mapleWarrior,
-            sumMainStat,
-            sumViecStat,
-            sumAtk,
-            sumMainStatPotential,
-            sumViecStatPotential,
-            sumAtkPotential,
-            union,
-            union2,
-            finalDamage,
-            bossDamage,
-            parseInt(damage) + parseInt(changeList[i]),
-            crit,
-            critDamage,
-            coefficient,
-            superMain
-          );
-          var change =
-            parseInt(result * (1 - 3 * (1 - igone / 100))) -
-            parseInt(real * (1 - 3 * (1 - igone / 100)));
-
-          var name = changeList[i] + "%伤害";
-          list.push({ name: name, change: change });
-        }
-        changeList = [20, 30, 35, 40, 60, 70, 80];
-        for (var i = 0; i < changeList.length; i++) {
-          var result = count(
-            level,
-            arc,
-            mapleWarrior,
-            sumMainStat,
-            sumViecStat,
-            sumAtk,
-            sumMainStatPotential,
-            sumViecStatPotential,
-            sumAtkPotential,
-            union,
-            union2,
-            finalDamage,
-            bossDamage,
-            parseInt(damage) + parseInt(changeList[i]),
-            crit,
-            critDamage,
-            coefficient,
-            superMain
-          );
-          var change =
-            parseInt(result * (1 - 3 * (1 - igone / 100))) -
-            parseInt(real * (1 - 3 * (1 - igone / 100)));
-          var name = changeList[i] + "%boss伤害";
-          list.push({ name: name, change: change });
-        }
-        changeList = [15, 20, 30, 35, 40, 45];
-        for (var i = 0; i < changeList.length; i++) {
-          var newIgone =
-            parseInt(igone) +
-            (100 - parseInt(igone)) * (parseInt(changeList[i]) / 100);
-          if (newIgone >= 100) {
-            newIgone = 100;
-          }
-
-          var change =
-            parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
-            parseInt(real * (1 - 3 * (1 - igone / 100)));
-          var name = changeList[i] + "%无视";
-          list.push({ name: name, change: change });
-        }
-
-        var newIgone = parseInt(igone) + (100 - parseInt(igone)) * 0.15;
-            console.log(newIgone);
-        newIgone = newIgone + (100 - newIgone) * 0.15;
-        console.log(newIgone);
-        if (newIgone >= 100) {
-          newIgone = 100;
-        }
-        var change =
-          parseInt(real * (1 - 3 * (1 - newIgone / 100))) -
-          parseInt(real * (1 - 3 * (1 - igone / 100)));
-        var name = "双15%无视";
-        list.push({ name: name, change: change });
         var nameList = [];
         var dateList = [];
-        for (var i = 0; i < list.length; i++) {
-          for (var j = i; j < list.length; j++) {
-            if (list[i].change > list[j].change) {
-              var temp = list[i];
-              list[i] = list[j];
-              list[j] = temp;
-            }
-          }
-        }
-        for (var i = 1; i < list.length; i++) {
+            var Promise = barChange();
+        Promise.then(res => {
+          list = res;
+                  for (var i = 1; i < list.length; i++) {
           nameList.push(list[i].name);
-          dateList.push((list[i].change / real * 100).toFixed(2));
+          dateList.push(list[i].changePercentage) ;
         }
         barChart.setOption(getBarOption(nameList, dateList));
-        return barChart;
+        if(i==i < list.length){
+      return barChart;
+        }
+  
+        });
+
       }
     };
   },
@@ -332,7 +115,7 @@ function getBarOption(name, date) {
         itemStyle: {
           normal: {
             label: {
-              formatter: function(a) {         
+              formatter: function(a) {
                 return a.value + "%";
               }
             }

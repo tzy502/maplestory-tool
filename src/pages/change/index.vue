@@ -314,7 +314,6 @@ export default {
               break;
             }
             case "atkp": {
-              console.log(num)
               atkp += parseInt(num);
               break;
             }

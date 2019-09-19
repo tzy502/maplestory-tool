@@ -8,8 +8,6 @@
     <div class="first_box">
       <div class="litter_bule"></div>
       <p class="first_content">收益明细</p>
-     
-
     </div>
     <div class="pannle">
       <div class="online_blue">
@@ -112,15 +110,16 @@
         </div>
       </div>
     </div>
-            <a href="../../pages/index/main">
-          <div class="box">返回首页</div>
-        </a>
+    <a href="../../pages/index/main">
+      <div class="box">返回首页</div>
+    </a>
   </div>
 </template>
 
 <script>
 import { count } from "../../utils/count.js";
 import { conncent } from "../../utils/conncent.js";
+import { backendCount } from "../../utils/conncent.js";
 export default {
   data() {
     return {
@@ -135,307 +134,44 @@ export default {
       AtkAndMainP: "",
       CritDAndAtkP: "",
       AtkPAndDamage: "",
-      realMainStat:""
+      realMainStat: ""
     };
   },
   mounted: function() {
-    conncent();
-    var level = wx.getStorageSync("level");
-    var arc = wx.getStorageSync("arc");
-    var crit = wx.getStorageSync("crit");
-    if (crit == null || crit == "") {
-      crit = 0;
-    }
-    var critDamage = wx.getStorageSync("critDamage");
-    if (critDamage == null || critDamage == "") {
-      critDamage = 0;
-    }
-    var mapleWarrior = wx.getStorageSync("mapleWarrior");
-    if (mapleWarrior == null || mapleWarrior == "") {
-      mapleWarrior = 15;
-    }
-    var superMain = wx.getStorageSync("superMain");
-    if (superMain == null || superMain == "") {
-      superMain = 0;
-    }
-    var union = wx.getStorageSync("union");
-    if (union == null || union == "") {
-      union = 0;
-    }
-    var union2 = wx.getStorageSync("union2");
-    if (union2 == null || union2 == "") {
-      union2 = 0;
-    }
-    var job = wx.getStorageSync("job");
-    var coefficient = wx.getStorageSync("coefficient");
-    if (coefficient == null || coefficient == "") {
-      coefficient = 1.0;
-    }
-    var value = wx.getStorageSync("value");
-    var list = wx.getStorageSync("list");
-    var finalDamage = wx.getStorageSync("finalDamage");
-    if (finalDamage == null || finalDamage == "") {
-      finalDamage = 0;
-    }
-    var bossDamage = wx.getStorageSync("bossDamage");
-    if (bossDamage == null || bossDamage == "") {
-      bossDamage = 0;
-    }
-    var damage = wx.getStorageSync("damage");
-    if (damage == null || damage == "") {
-      damage = 0;
-    }
-    var sumMainStat = 0;
-    var sumViecStat = 0;
-    var sumAtk = 0;
-    var sumMainStatPotential = 0;
-    var sumViecStatPotential = 0;
-    var sumAtkPotential = 0;
-    for (var i = 0; i < 39; i++) {
-      var MainStat = list[i].item[0].value;
-      if (MainStat != null && MainStat != "") {
-        sumMainStat += parseInt(MainStat);
-      }
-      var ViecStat = list[i].item[1].value;
-      if (ViecStat != null && ViecStat != "") {
-        sumViecStat += parseInt(ViecStat);
-      }
-      var Atk = list[i].item[2].value;
-      if (Atk != null && Atk != "") {
-        sumAtk += parseInt(Atk);
-      }
-      var MainStatPotential = list[i].item[3].value;
-      if (MainStatPotential != null && MainStatPotential != "") {
-        sumMainStatPotential += parseInt(MainStatPotential);
-      }
+    var Promise = backendCount();
+    var result;
+    //     wx.showLoading({
+    //   title: "计算ing……"
+    // });
 
-      var ViecStatPotential = list[i].item[4].value;
-      if (ViecStatPotential != null && ViecStatPotential != "") {
-        sumViecStatPotential += parseInt(ViecStatPotential);
-      }
-      var AtkPotential = list[i].item[5].value;
-      if (AtkPotential != null && AtkPotential != "") {
-        sumAtkPotential += parseInt(AtkPotential);
-      }
-    }
-      
-    var real = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var addmainStat=1;
-    var avgent = wx.getStorageSync("avgent");
-    if (avgent == 1) {
-      addmainStat=100
-    }
-    var mainStatAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      parseInt(sumMainStat + addmainStat),
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var mainStatPotentialAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      parseInt(sumMainStatPotential + 1),
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var atkAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      parseInt(sumAtk + 1),
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var AtkPotentialAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      parseInt(sumAtkPotential + 1),
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var damageAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      1 * damage + 1,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var critDamageAddOne = count(
-      level,
-      arc,
-      mapleWarrior,
-      sumMainStat,
-      sumViecStat,
-      sumAtk,
-      sumMainStatPotential,
-      sumViecStatPotential,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      1 * critDamage + 1,
-      coefficient,
-      superMain
-    );
-
-    var AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
-    this.AtkPUp=AtkPUp;
-    var AtkUp = (atkAddOne - real).toFixed(1);
-    this.AtkUp=AtkUp;
-    this.MainPUp = (mainStatPotentialAddOne - real).toFixed(1);
-    var MainUp = (mainStatAddOne - real).toFixed(1);
-    if (avgent == 1) {
-      MainUp=MainUp/100
-    }
-     this.MainUp=MainUp
-    this.CritDUp = (critDamageAddOne - real).toFixed(1);
-    this.DamageUp = (damageAddOne - real).toFixed(1);
-    this.AtkAndP = (AtkPUp / AtkUp).toFixed(
-      1
-    );
-    this.AtkAndMain = (AtkUp/ MainUp).toFixed(1);
-    this.AtkAndMainP = (
-      (AtkPotentialAddOne - real) /
-      (mainStatPotentialAddOne - real)
-    ).toFixed(1);
-    this.CritDAndAtkP = (
-      (critDamageAddOne - real) /
-      (AtkPotentialAddOne - real)
-    ).toFixed(1);
-    this.AtkPAndDamage = (
-      (AtkPotentialAddOne - real) /
-      (damageAddOne - real)
-    ).toFixed(1);
-    wx.setStorage({
-      key: "real",
-      data: real,
-      success: function(res) {
-        console.log("异步保存实际面板成功");
-        wx.setStorage({
-          key: "haveDate",
-          data: 1,
-          success: function(res) {
-            console.log("设置标签");
-          }
-        });
-      }
-    });
-    wx.setStorage({
-      key: "sumMainStat",
-      data: sumMainStat,
-      success: function(res) {}
-    });
-    wx.setStorage({
-      key: "sumViecStat",
-      data: sumViecStat,
-      success: function(res) {}
-    });
-    wx.setStorage({
-      key: "sumAtk",
-      data: sumAtk,
-      success: function(res) {}
-    });
-    wx.setStorage({
-      key: "sumMainStatPotential",
-      data: sumMainStatPotential,
-      success: function(res) {}
-    });
-    wx.setStorage({
-      key: "sumViecStatPotential",
-      data: sumViecStatPotential,
-      success: function(res) {}
-    });
-    wx.setStorage({
-      key: "sumAtkPotential",
-      data: sumAtkPotential,
-      success: function(res) {}
+    Promise.then(res => {
+      result = res;
+      this.AtkPUp = result.atkPUp;
+      this.AtkUp = result.atkUp;
+      this.MainUp = result.mainUp;
+      this.MainPUp = result.mainPUp;
+      this.CritDUp = result.critDUp;
+      this.DamageUp = result.damageUp;
+      this.AtkAndP = result.atkAndP;
+      this.AtkAndMain = result.atkAndMain;
+      this.AtkAndMainP = result.atkAndMainP;
+      this.CritDAndAtkP = result.critDAndAtkP;
+      this.AtkPAndDamage = result.atkPAndDamage;
+      wx.setStorage({
+        key: "real",
+        data: result.real,
+        success: function(res) {
+          console.log("异步保存实际面板成功");
+              console.log(result.real);
+          wx.setStorage({
+            key: "haveDate",
+            data: 1,
+            success: function(res) {
+              console.log("设置标签");
+            }
+          });
+        }
+      });
     });
   },
 
@@ -460,6 +196,7 @@ export default {
 
 .first_box {
   margin-left: 5rpx;
+    margin-right: 5rpx;
   margin-top: 26rpx;
   display: flex;
   flex-direction: row;
@@ -536,6 +273,8 @@ export default {
   margin-left: 38rpx;
   margin-right: 42rpx;
   margin-top: 30rpx;
+    width: 712rpx;
+  height: 122rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -544,6 +283,6 @@ export default {
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 1px 30px 0px rgba(0, 0, 0, 0.08);
   border-radius: 6rpx;
-    width: 700rpx;
+  width: 700rpx;
 }
 </style>

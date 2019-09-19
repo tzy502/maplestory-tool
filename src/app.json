@@ -1,12 +1,13 @@
 {
     "pages": [
         "pages/warring/main",
+        "pages/pselect/main",
+        "pages/result/main",       
         "pages/line/main",
         "pages/xenonFirst/main",
         "pages/xenonSecond/main",
         "pages/xenonResult/main",
         "pages/xenonIndex/main",
-        "pages/pselect/main",
         "pages/igroneCount/main",
         "pages/selectJob/main",
         "pages/weaponback/main",
@@ -15,7 +16,6 @@
         "pages/change/main",
         "pages/presult/main",
         "pages/second/main",
-        "pages/result/main",
         "pages/about/main",
         "pages/first/main"
     ],
@@ -25,6 +25,19 @@
         "navigationBarTitleText": "MapleStory工具",
         "navigationBarTextStyle": "black"
     },
-
+    "tabBar": {
+        "color": "#999",
+        "backgroundColor": "#fafafa",
+        "selectedColor": "rgb(241,99,8)",
+        "borderStyle": "white",
+        "list": [{
+            "text": "首页",
+            "pagePath": "pages/warring/main"
+          },{
+            "text": "选择职业",
+            "pagePath": "pages/selectJob/main"
+          }
+        ]
+    },
     "cloud": true
 }

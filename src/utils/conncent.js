@@ -140,6 +140,46 @@ var conncent = function () {
     }
   })
 }
+var backendCount = function () {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: "http://127.0.0.1:9333/api/analyse/result",
+      method: 'Post',
+      data: "",
+      headers: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var data = res.data
+
+        if (data.code = 200) {
+          resolve(data.data);
+        }
+      }
+    })
+  })
+}
+var barChange = function () {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: "http://127.0.0.1:9333/api/analyse/barChange",
+      method: 'Post',
+      data: "",
+      headers: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var data = res.data
+
+        if (data.code = 200) {
+          resolve(data.data);
+        }
+      }
+    })
+  })
+}
 export {
-  conncent
+  conncent,
+  backendCount,
+  barChange
 }

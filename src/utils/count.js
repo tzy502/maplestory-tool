@@ -34,6 +34,7 @@ var count = function (level, arc, mapleWarrior, sumMainStat, sumViecStat, sumAtk
         var realMainStat = baseMaxHp + 0.8 * (tableHp - baseMaxHp)
     } else {
         var realMainStat = (((parseInt(level) * 5 + 18) * (1 + parseInt(mapleWarrior) / 100) + parseInt(sumMainStat) + parseInt(union)) * (1 + parseInt(sumMainStatPotential) / 100)) + parseInt(arc) * 10 + parseInt(union2) + parseInt(superMain)
+        console.log(realMainStat)
         realMainStat = realMainStat * 4
     }
     var realViecStat = (4 + parseInt(sumViecStat)) * (1 + (parseInt(sumViecStatPotential)) / 100);

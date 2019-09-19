@@ -24,6 +24,7 @@
 	"projectname": "maplestory-tool",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.8.2",
 	"condition": {
 		"search": {
 			"current": -1,
