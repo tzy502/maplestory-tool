@@ -320,8 +320,8 @@ export default {
           value: 35 //下标
         },
         {
-          label: "虎影扇子", //武器名字
-          coefficient: "1.0", //系数
+          label: "古代弓", //武器名字
+          coefficient: "1.3", //系数
           value: 36 //下标
         },
         {
