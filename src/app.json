@@ -2,6 +2,7 @@
     "pages": [
         "pages/warring/main",
         "pages/pselect/main",
+        "pages/change/main",
         "pages/result/main",       
         "pages/line/main",
         "pages/xenonFirst/main",
@@ -13,7 +14,6 @@
         "pages/weaponback/main",
         "pages/arcresult/main",
         "pages/index/main",
-        "pages/change/main",
         "pages/presult/main",
         "pages/second/main",
         "pages/about/main",

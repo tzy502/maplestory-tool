@@ -4,7 +4,7 @@
     <!-- <p class="warring-content">测试版暂不支持无视计算</p> -->
     <div class="introduction">
       <!-- <button class="addLine" @click="onAdd">添加新一套配装</button>
-      <button class="addLine" @click="onReduce">去除最后一套配装</button> -->
+      <button class="addLine" @click="onReduce">去除最后一套配装</button>-->
       <div class="box" v-for="(item,i) of items" :key="i">
         <div class="suitName">
           <p class="suitName_title">配装名：</p>
@@ -70,7 +70,6 @@ export default {
     this.damage = wx.getStorageSync("damage");
     var haveDate = wx.getStorageSync("haveDate");
     if (haveDate != true) {
-      console.log(123);
       this.$mptoast("请先填写装备详情", "error", "1");
       var url = "../../pages/first/main";
       wx.navigateTo({ url });
@@ -107,6 +106,10 @@ export default {
         {
           label: "无视",
           value: "igone"
+        },
+        {
+          label: "爆伤",
+          value: "critDamage"
         }
       ],
       items: [
@@ -163,12 +166,10 @@ export default {
     },
     onChange(e) {
       this.typeNameTransit = e.label;
-   
+
       this.typeTransit = e.value[0];
-  
     },
     // onCancel(e) {
-    //   console.log(e);
     // },
     onAdd() {
       this.items.push({ name: "", change: [] });
@@ -202,180 +203,31 @@ export default {
       this.items[i].change.pop();
     },
     result() {
-      var level = wx.getStorageSync("level");
-      var arc = wx.getStorageSync("arc");
-      var crit = wx.getStorageSync("crit");
-      if (crit == null || crit == "") {
-        crit = 0;
+      var items=this.items;
+      var equipContrastList = []
+      for(var i=0;i<items.length;i++){
+        equipContrastList.push(items[i]);
       }
-      var critDamage = wx.getStorageSync("critDamage");
-      if (critDamage == null || critDamage == "") {
-        critDamage = 0;
-      }
-      var mapleWarrior = wx.getStorageSync("mapleWarrior");
-      if (mapleWarrior == null || mapleWarrior == "") {
-        mapleWarrior = 15;
-      }
-      var superMain = wx.getStorageSync("superMain");
-      if (superMain == null || superMain == "") {
-        superMain = 0;
-      }
-      var union = wx.getStorageSync("union");
-      if (union == null || union == "") {
-        union = 0;
-      }
-      var union2 = wx.getStorageSync("union2");
-      if (union2 == null || union2 == "") {
-        union2 = 0;
-      }
-      var job = wx.getStorageSync("job");
-      var coefficient = wx.getStorageSync("coefficient");
-      if (coefficient == null || coefficient == "") {
-        coefficient = 1.0;
-      }
-      var value = wx.getStorageSync("value");
-      var finalDamage = wx.getStorageSync("finalDamage");
-      if (finalDamage == null || finalDamage == "") {
-        finalDamage = 0;
-      }
-      var bossDamage = wx.getStorageSync("bossDamage");
-      if (bossDamage == null || bossDamage == "") {
-        bossDamage = 0;
-      }
-      var damage = wx.getStorageSync("damage");
-      if (damage == null || damage == "") {
-        damage = 0;
-      }
-      var sumMainStat = wx.getStorageSync("sumMainStat");
-      if (sumMainStat == null || sumMainStat == "") {
-        sumMainStat = 0;
-      }
-      var sumViecStat = wx.getStorageSync("sumViecStat");
-      if (sumViecStat == null || sumViecStat == "") {
-        sumViecStat = 0;
-      }
-      var sumAtk = wx.getStorageSync("sumAtk");
-      if (sumAtk == null || sumAtk == "") {
-        sumAtk = 0;
-      }
-
-      var sumMainStatPotential = wx.getStorageSync("sumMainStatPotential");
-      if (sumMainStatPotential == null || sumMainStatPotential == "") {
-        sumMainStatPotential = 0;
-      }
-      var sumViecStatPotential = wx.getStorageSync("sumViecStatPotential");
-      if (sumViecStatPotential == null || sumViecStatPotential == "") {
-        sumViecStatPotential = 0;
-      }
-      var sumAtkPotential = wx.getStorageSync("sumAtkPotential");
-      if (sumAtkPotential == null || sumAtkPotential == "") {
-        sumAtkPotential = 0;
-      }
-      var real = wx.getStorageSync("real");
-      if (real == null || real == "") {
-        real = 0;
-      }
-      var igone = wx.getStorageSync("igone");
-      if (igone == null || igone == "") {
-        igone = 0;
-      }
-      var list = this.items;
-      var atk = 0;
-      var atkp = 0;
-      var damageChange = 0;
-      var main = 0;
-      var mainP = 0;
-      var mainP = 0;
-      var levelChange = 0;
-      var resultList = [];
-      var newIgone = igone;
-      for (var i = 0; i < list.length; i++) {   
-        atk = 0;
-        atkp = 0;
-        damageChange = 0;
-        main = 0;
-        mainP = 0;
-        mainP = 0;
-        newIgone = igone;
-        var change = list[i].change;
-
-        for (var j = 0; j < change.length; j++) {
-          var type = change[j].type;
-      
-          var num = change[j].num;
-          if (num == null || num == "") {
-            num = 0;
-          } else {
-            num = num * change[j].isAdd;
-          }
-          switch (type) {
-            case "atk": {
-              atk += parseInt(num);
-              break;
-            }
-            case "atkp": {
-              atkp += parseInt(num);
-              break;
-            }
-            case "damage": {
-              damageChange += parseInt(num);
-              break;
-            }
-            case "main": {
-              main += parseInt(num);
-              break;
-            }
-            case "mainP": {
-              mainP += parseInt(num);
-              break;
-            }
-            case "level": {
-              level += parseInt(num);
-              break;
-            }
-            case "igone": {
-              if (num <= 0) {
-                newIgone= parseInt(newIgone)-(parseInt(newIgone)-(1-(1-parseInt(newIgone)/(1-parseInt(num)))))
-              } else {
-                newIgone = parseInt(newIgone)+ ((100- parseInt(newIgone)) * (( parseInt(num)) / 100));
-
-              }
-              break;
-            }
-          }
-        }
-        var result = count(
-          parseInt(level) + parseInt(levelChange),
-          arc,
-          mapleWarrior,
-          parseInt(sumMainStat) + parseInt(main),
-          sumViecStat,
-          parseInt(sumAtk) + parseInt(atk),
-          parseInt(sumMainStatPotential) + parseInt(mainP),
-          sumViecStatPotential,
-          parseInt(sumAtkPotential) + parseInt(atkp),
-          union,
-          union2,
-          finalDamage,
-          bossDamage,
-          parseInt(damage) + parseInt(damageChange),
-          crit,
-          critDamage,
-          coefficient,
-          superMain
-        );
-        var change =
-          parseInt(result * (1-(3 * (1 -  newIgone/ 100)))) -
-          parseInt(real * (1-(3 * (1 -  igone/ 100))));
-        resultList.push({ name: list[i].name, result: change });
-      }
-
-      wx.setStorage({
-        key: "changeList",
-        data: resultList,
+      wx.request({
+        url: "http://127.0.0.1:9333/api/analyse/equipChange",
+        method: "Post",
+        data: equipContrastList,
+        headers: {
+          "content-type": "application/json" // 默认值
+        },
         success: function(res) {
-          var url = "../../pages/presult/main";
-          wx.navigateTo({ url });
+          var data=res.data
+          console.log(data.data)
+          if ((data.code = 200)) {
+            wx.setStorage({
+              key: "changeList",
+              data: data.data,
+              success: function(res) {
+                var url = "../../pages/presult/main";
+                wx.navigateTo({ url });
+              }
+            });
+          }
         }
       });
     }

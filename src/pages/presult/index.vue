@@ -29,9 +29,10 @@ export default {
         var name = [];
         var date = [];
         var changeList = wx.getStorageSync("changeList");
+        console.log("changeList"+changeList)
         for (var i = 0; i < changeList.length; i++) {
           name.push(changeList[i].name);
-          date.push(changeList[i].result);
+          date.push(changeList[i].changePercentage);
         }
         barChart.setOption(getBarOption(name, date));
         return barChart;
@@ -102,7 +103,16 @@ function getBarOption(name, date) {
             show: true
           }
         },
-        data: date
+        data: date,
+              itemStyle: {
+          normal: {
+            label: {
+              formatter: function(a) {
+                return a.value + "%";
+              }
+            }
+          }
+        }
       }
     ]
   };

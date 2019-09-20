@@ -341,26 +341,25 @@ export default {
         var x = Math.floor(totalatk / 50) + 1;
         var y = Math.floor((totalatk - Math.floor(totalatk / 50)) / 50) + 1;
         if (x == y) {
-          console.log("x" + x);
+     
           totalatk = totalatk - x;
         } else {
-          console.log("y" + y);
+        
           totalatk = totalatk - y;
         }
-        console.log("totalatk" + totalatk);
+      
         if (15 >= star && star > 5) {
           totalmains = totalmains - 3;
         } else if (5 >= star && star > 0) {
           totalmains = totalmains - 2;
         }
       }
-      console.log(totalatk);
+
       var avgatk = (totalatk - originalatk) / usage;
       var avgmain = (totalmains - originalmains) / usage;
       this.avgatk=avgatk;
       this.avgmain=avgmain;
-      console.log("avgatk" + avgatk);
-      console.log("avgmain" + avgmain);
+
       if (avgatk == 13) {
         this.maybe = "究极黑暗卷轴";
       }

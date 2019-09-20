@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-        <p class="warring">真实无视计算</p>
-            <div class="introduction"></div>
+    <p class="warring">真实无视计算</p>
+    <div class="introduction"></div>
     <div class="first_box">
       <div class="litter_bule"></div>
       <p class="first_content">请填写以下内容</p>
@@ -44,12 +44,13 @@
 <script>
 import mptoast from "mptoast";
 import mpvuePicker from "mpvue-picker";
+import { ignoreChange } from "../../utils/conncent.js";
 export default {
   components: {
     mptoast,
     mpvuePicker
   },
-  mounted: function() {},
+  mounted: function() {      this.igrone = wx.getStorageSync("igone");},
   data() {
     return {
       igrone: "",
@@ -68,48 +69,32 @@ export default {
       this.skills.push({});
     },
     analyse() {
-      console.log(this.skills);
+      
+      var igoneChange = [];
+      igoneChange.push( this.igrone);
       var realIgrone = parseInt(this.igrone);
       var superSkill = this.superSkill;
       if (superSkill != null && superSkill != "") {
-        realIgrone =
-          realIgrone +
-          (100 - parseInt(realIgrone)) * (parseInt(superSkill) / 100);
+        igoneChange.push(superSkill);
       }
       var core = this.core;
       if (core != null && core != "") {
-        realIgrone =
-          realIgrone +
-          (100 - parseInt(realIgrone)) * (parseInt(core) / 100);
+        igoneChange.push(core);
       }
 
       var skills = this.skills;
       for (var i = 0; i < skills.length; i++) {
         var skill = skills[i].igrone;
         if (skill != null && skill != "") {
-          realIgrone =
-            realIgrone +
-            (100 - parseInt(realIgrone)) * (parseInt(skill) / 100);
+          igoneChange.push(skill);
         }
       }
-      this.realIgrone = realIgrone;
-      if (realIgrone == null || realIgrone == "") {
-        wx.setStorage({
-          key: "igone",
-          data: "",
-          success: function(res) {
-            console.log("异步保存无视成功");
-          }
-        });
-      } else {
-        wx.setStorage({
-          key: "igone",
-          data: Math.round(realIgrone),
-          success: function(res) {
-            console.log("异步保存无视成功");
-          }
-        });
-      }
+          var Promise = ignoreChange(igoneChange);
+     Promise.then(res => {
+       console.log(res)
+        this.realIgrone=res
+     })
+
     }
   }
 };

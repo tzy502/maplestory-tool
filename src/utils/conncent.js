@@ -178,8 +178,42 @@ var barChange = function () {
     })
   })
 }
+var ignoreChange = function (igoneChange) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: "http://127.0.0.1:9333/api/analyse/IgoneChange",
+      method: "Post",
+      data: igoneChange,
+      headers: {
+        "content-type": "application/json" // 默认值
+      },
+      success: function (res) {
+          resolve(res.data.data);
+          var realIgrone=res.data.data
+        if (realIgrone == null || realIgrone == "") {
+          wx.setStorage({
+            key: "igone",
+            data: "",
+            success: function (res) {
+              console.log("异步保存无视成功");
+            }
+          });
+        } else {
+          wx.setStorage({
+            key: "igone",
+            data: realIgrone,
+            success: function (res) {
+              console.log("异步保存无视成功");
+            }
+          });
+        }
+      }
+    });
+  })
+}
 export {
   conncent,
   backendCount,
-  barChange
+  barChange,
+  ignoreChange
 }
