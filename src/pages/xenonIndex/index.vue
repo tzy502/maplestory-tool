@@ -16,9 +16,9 @@
           <div class="box">具体属性比例</div>
         </a>
 
-        <!-- <a href="../../pages/pselect/main">
+        <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
-        </a> -->
+        </a>
   
       </div>
          <a href="../../pages/igroneCount/main">

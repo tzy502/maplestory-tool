@@ -25,19 +25,5 @@
         "navigationBarTitleText": "MapleStory工具",
         "navigationBarTextStyle": "black"
     },
-    "tabBar": {
-        "color": "#999",
-        "backgroundColor": "#fafafa",
-        "selectedColor": "rgb(241,99,8)",
-        "borderStyle": "white",
-        "list": [{
-            "text": "首页",
-            "pagePath": "pages/warring/main"
-          },{
-            "text": "选择职业",
-            "pagePath": "pages/selectJob/main"
-          }
-        ]
-    },
     "cloud": true
 }

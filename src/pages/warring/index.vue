@@ -27,9 +27,6 @@ export default {
 
   mounted: function() {
 
-    wx.showLoading({
-      title: "启动配置ing……"
-    });
     var openId = wx.getStorageSync("openId");
     var code;
     wx.login({
@@ -53,11 +50,11 @@ export default {
             if (openId != data.data) {
               wx.setStorage({
                 key: "openId",
-                data: data.data,
+                data: data.data.openId,
                 success: function(res) {
                   console.log("设置openId");
                   var openId = {
-                    openId: data.data
+                    openId: data.data.openId
                   };
                   wx.request({
                     url: "http://127.0.0.1:9333/api/base/openidRegister",
@@ -72,11 +69,19 @@ export default {
                   });
                 }
               });
+            }else{
+                 wx.setStorage({
+        key: "loin",
+        data: level,
+        success: function(res) {
+          console.log("异步保存等级成功");
+        }
+      });
             }
+      
           }
         });
 
-        wx.hideLoading();
       }
     });
   }

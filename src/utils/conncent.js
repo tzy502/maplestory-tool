@@ -120,10 +120,16 @@ var conncent = function () {
     damage = 0;
   }
   data.damage = damage;
-  console.log(data)
+  var method="Post"
+  var haveDate = wx.getStorageSync("haveDate");
+  console.log("js1"+method)
+  if(haveDate==1){
+    method="Put"
+  }
+  console.log("js2"+method)
   wx.request({
-    url: "http://127.0.0.1:9333/api/analyse/setItem",
-    method: 'Post',
+    url: "http://127.0.0.1:9333/api/item",
+    method: method,
     data: data,
     headers: {
       'content-type': 'application/json' // 默认值

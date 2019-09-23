@@ -29,6 +29,19 @@ export default {
   mounted: function() {},
   methods: {
     avgent() {
+      var haveDate = wx.getStorageSync("haveDate");
+      if (haveDate == 1) {
+        var avgent = wx.getStorageSync("avgent");
+        if (avgent != 0) {
+          wx.setStorage({
+            key: "haveDate",
+            data: "",
+            success: function(res) {
+              console.log("置空有数据状态");
+            }
+          });
+        }
+      }
       wx.setStorage({
         key: "avgent",
         data: 1,
@@ -37,7 +50,20 @@ export default {
         }
       });
     },
-        xenon() {
+    xenon() {
+      var haveDate = wx.getStorageSync("haveDate");
+      if (haveDate == 1) {
+        var avgent = wx.getStorageSync("avgent");
+        if (avgent != 2) {
+          wx.setStorage({
+            key: "haveDate",
+            data: "",
+            success: function(res) {
+              console.log("置空有数据状态");
+            }
+          });
+        }
+      }
       wx.setStorage({
         key: "avgent",
         data: 2,
@@ -46,7 +72,20 @@ export default {
         }
       });
     },
-       normal() {
+    normal() {
+      var haveDate = wx.getStorageSync("haveDate");
+      if (haveDate == 1) {
+        var avgent = wx.getStorageSync("avgent");
+        if (avgent != 1) {
+          wx.setStorage({
+            key: "haveDate",
+            data: "",
+            success: function(res) {
+              console.log("置空有数据状态");
+            }
+          });
+        }
+      }
       wx.setStorage({
         key: "avgent",
         data: 0,

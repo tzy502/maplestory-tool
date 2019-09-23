@@ -1533,7 +1533,7 @@ export default {
           console.log("异步保存装备信息成功");
           wx.setStorage({
             key: "haveDate",
-            data: true,
+            data: "",
             success: function(res) {}
           });
           conncent();

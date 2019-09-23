@@ -182,7 +182,8 @@
 
 <script>
 import { count } from "../../utils/count.js";
-import { xenoncount } from "../../utils/count.js";
+import { conncent } from "../../utils/conncent.js";
+import { backendCount } from "../../utils/conncent.js";
 export default {
   data() {
     return {
@@ -209,431 +210,49 @@ export default {
     };
   },
   mounted: function() {
-    var dexAp = wx.getStorageSync("dexAp");
-    if (dexAp == null || dexAp == "") {
-      dexAp = 0;
-    }
-    var strAp = wx.getStorageSync("strAp");
-    if (strAp == null || strAp == "") {
-      strAp = 0;
-    }
-    var lucAp = wx.getStorageSync("lucAp");
-    if (lucAp == null || lucAp == "") {
-      lucAp = 0;
-    }
-    var arc = wx.getStorageSync("arc");
-    var crit = wx.getStorageSync("crit");
-    if (crit == null || crit == "") {
-      crit = 0;
-    }
-    var critDamage = wx.getStorageSync("critDamage");
-    if (critDamage == null || critDamage == "") {
-      critDamage = 0;
-    }
-    var mapleWarrior = wx.getStorageSync("mapleWarrior");
-    if (mapleWarrior == null || mapleWarrior == "") {
-      mapleWarrior = 15;
-    }
-    var superMain = wx.getStorageSync("superMain");
-    if (superMain == null || superMain == "") {
-      superMain = 0;
-    }
-    var union = wx.getStorageSync("union");
-    if (union == null || union == "") {
-      union = 0;
-    }
-    var union2 = wx.getStorageSync("union2");
-    if (union2 == null || union2 == "") {
-      union2 = 0;
-    }
-    var job = wx.getStorageSync("job");
-    var coefficient = wx.getStorageSync("coefficient");
-    if (coefficient == null || coefficient == "") {
-      coefficient = 1.0;
-    }
-    var value = wx.getStorageSync("value");
-    var list = wx.getStorageSync("list");
-    var finalDamage = wx.getStorageSync("finalDamage");
-    if (finalDamage == null || finalDamage == "") {
-      finalDamage = 0;
-    }
-    var bossDamage = wx.getStorageSync("bossDamage");
-    if (bossDamage == null || bossDamage == "") {
-      bossDamage = 0;
-    }
-    var damage = wx.getStorageSync("damage");
-    if (damage == null || damage == "") {
-      damage = 0;
-    }
-    var sumStrStat = 0;
-    var sumDexStat = 0;
-    var sumLucStat = 0;
-    var sumAtk = 0;
-    var sumStrStatPotential = 0;
-    var sumDexStatPotential = 0;
-    var sumLucStatPotential = 0;
-    var sumAtkPotential = 0;
-    for (var i = 0; i < 39; i++) {
-      var str = list[i].item[0].value;
-      if (str != null && str != "") {
-        sumStrStat += parseInt(str);
-      }
-      var luc = list[i].item[1].value;
-      if (luc != null && luc != "") {
-        sumLucStat += parseInt(luc);
-      }
-      var dex = list[i].item[2].value;
-      if (dex != null && dex != "") {
-        sumDexStat += parseInt(dex);
-      }
+    var result;
+    var Promise = backendCount();
+    Promise.then(res => {
+      result = res;
+      this.strUp = result.strUp;
+      this.strPUp = result.strPUp;
+      this.dexUp = result.dexUp;
+      this.dexPUp = result.dexPUp;
+      this.lucUp = result.lucUp;
+      this.lucPUp = result.lucPUp;
+      this.CritDUp = result.critDUp;
+      this.AtkPUp = result.atkPUp;
+      this.AtkUp = result.atkUp;
+      this.CritDUp = result.critDUp;
+      this.DamageUp = result.damageUp;
 
-      var Atk = list[i].item[3].value;
-      if (Atk != null && Atk != "") {
-        sumAtk += parseInt(Atk);
-      }
-      var strPotential = list[i].item[4].value;
-      if (strPotential != null && strPotential != "") {
-        sumStrStatPotential += parseInt(strPotential);
-      }
-
-      var lucPotential = list[i].item[5].value;
-      if (lucPotential != null && lucPotential != "") {
-        sumLucStatPotential += parseInt(lucPotential);
-      }
-      var dexPotential = list[i].item[6].value;
-      if (dexPotential != null && dexPotential != "") {
-        sumDexStatPotential += parseInt(dexPotential);
-      }
-      var AtkPotential = list[i].item[7].value;
-      if (AtkPotential != null && AtkPotential != "") {
-        sumAtkPotential += parseInt(AtkPotential);
-      }
-    }
-
-    var real = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-
-    var strAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      parseInt(sumStrStat + 1),
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var mainStrPotentialAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      parseInt(sumStrStatPotential + 1),
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var dexAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      parseInt(sumDexStat + 1),
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var dexPotentialAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      parseInt(sumDexStatPotential + 1),
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var lucAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      parseInt(sumLucStat + 1),
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var lucPotentialAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      parseInt(sumLucStatPotential + 1),
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var atkAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      parseInt(sumAtk + 1),
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var AtkPotentialAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      parseInt(sumAtkPotential + 1),
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var critDamageAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      damage,
-      crit,
-      parseInt(critDamage + 1),
-      coefficient,
-      superMain
-    );
-    var damageAddOne = xenoncount(
-      strAp,
-      lucAp,
-      dexAp,
-      sumStrStat,
-      sumDexStat,
-      sumLucStat,
-      sumStrStatPotential,
-      sumDexStatPotential,
-      sumLucStatPotential,
-      arc,
-      mapleWarrior,
-      sumAtk,
-      sumAtkPotential,
-      union,
-      union2,
-      finalDamage,
-      bossDamage,
-      parseInt(damage + 1),
-      crit,
-      critDamage,
-      coefficient,
-      superMain
-    );
-    var AtkPUp = (AtkPotentialAddOne - real).toFixed(1);
-    this.AtkPUp = AtkPUp;
-    var AtkUp = (atkAddOne - real).toFixed(1);
-    this.AtkUp = AtkUp;
-    var strUp = (strAddOne - real).toFixed(1);
-    this.strUp = strUp;
-    var strPUp = (mainStrPotentialAddOne - real).toFixed(1);
-    this.strPUp = strPUp;
-
-    var dexUp = (dexAddOne - real).toFixed(1);
-    this.dexUp = dexUp;
-    var dexPUp = (dexPotentialAddOne - real).toFixed(1);
-    this.dexPUp = dexPUp;
-    var lucUp = (lucAddOne - real).toFixed(1);
-    this.lucUp = lucUp;
-    var lucPUp = (lucPotentialAddOne - real).toFixed(1);
-    this.lucPUp = lucPUp;
-    var CritDUp = (critDamageAddOne - real).toFixed(1);
-    this.CritDUp = CritDUp;
-    var DamageUp = (damageAddOne - real).toFixed(1);
-    this.DamageUp = DamageUp;
-    this.AtkAndP = (AtkPUp / AtkUp).toFixed(1);
-    this.AtkAndStr = (AtkUp / strUp).toFixed(1);
-    this.AtkAndStrP = (AtkPUp / strPUp).toFixed(1);
-    this.AtkAndDex = (AtkUp / dexUp).toFixed(1);
-    this.AtkAndDexP = (AtkPUp / dexPUp).toFixed(1);
-    this.AtkAndLuc = (AtkUp / lucUp).toFixed(1);
-    this.AtkAndLucP = (AtkPUp / lucPUp).toFixed(1);
-    this.CritDAndAtkP = (CritDUp / AtkPUp).toFixed(1);
-    this.AtkPAndDamage = (AtkPUp / DamageUp).toFixed(1);
-    wx.setStorage({
-      key: "real",
-      data: real,
-      success: function(res) {
-        console.log("异步保存实际面板成功");
-        wx.setStorage({
-          key: "haveDate",
-          data: 1,
-          success: function(res) {
-            console.log("设置标签");
-          }
-        });
-      }
+    this.AtkAndStr = result.atkAndStr
+    this.AtkAndStrP = result.atkAndStrP
+    this.AtkAndDex = result.atkAndDex
+    this.AtkAndDexP = result.atkAndDexP
+    this.AtkAndLuc = result.atkAndLuc
+    this.AtkAndLucP = result.atkAndLucP
+      this.AtkAndP = result.atkAndP;
+      this.CritDAndAtkP = result.critDAndAtkP;
+      this.AtkPAndDamage = result.atkPAndDamage;
+      wx.setStorage({
+        key: "real",
+        data: result.real,
+        success: function(res) {
+          console.log("异步保存实际面板成功");
+          console.log(result.real);
+          wx.setStorage({
+            key: "haveDate",
+            data: 1,
+            success: function(res) {
+              console.log("设置标签");
+            }
+          });
+        }
+      });
     });
 
-
-    wx.setStorage({
-      key: "sumAtk",
-      data: sumAtk,
-      success: function(res) {}
-    });
-
-    wx.setStorage({
-      key: "sumAtkPotential",
-      data: sumAtkPotential,
-      success: function(res) {}
-    });
   },
-
   methods: {}
 };
 </script>

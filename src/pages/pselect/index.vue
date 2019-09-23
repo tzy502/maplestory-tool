@@ -133,7 +133,7 @@ function getBarOption(name, date) {
 }
 .wrap {
   width: 100%;
-  height: 2000rpx;
+  height: 3000rpx;
 }
 .introduction {
   margin-top: 30rpx;
