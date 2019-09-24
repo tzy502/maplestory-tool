@@ -162,7 +162,6 @@ export default {
         data: result.real,
         success: function(res) {
           console.log("异步保存实际面板成功");
-              console.log(result.real);
           wx.setStorage({
             key: "haveDate",
             data: 1,

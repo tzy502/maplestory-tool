@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/warring/main",
+        "pages/register/main",
         "pages/pselect/main",
         "pages/change/main",
         "pages/result/main",       

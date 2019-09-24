@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { getItem } from "../../utils/conncent.js";
 export default {
   data() {
     return {
@@ -46,6 +47,7 @@ export default {
         key: "avgent",
         data: 1,
         success: function(res) {
+          getItem(1);
           console.log("设置为复仇者职业");
         }
       });
@@ -68,6 +70,7 @@ export default {
         key: "avgent",
         data: 2,
         success: function(res) {
+          getItem(2);
           console.log("设置为尖兵");
         }
       });
@@ -76,7 +79,7 @@ export default {
       var haveDate = wx.getStorageSync("haveDate");
       if (haveDate == 1) {
         var avgent = wx.getStorageSync("avgent");
-        if (avgent != 1) {
+        if (avgent != 0) {
           wx.setStorage({
             key: "haveDate",
             data: "",
@@ -90,6 +93,7 @@ export default {
         key: "avgent",
         data: 0,
         success: function(res) {
+          getItem(0);
           console.log("设置为普通职业");
         }
       });

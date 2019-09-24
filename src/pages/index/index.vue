@@ -21,18 +21,21 @@
         <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
         </a>
-                <a href="../../pages/line/main">
+        <a href="../../pages/line/main">
           <div class="box">冒险岛潜能收益折线图</div>
         </a>
       </div>
-         <a href="../../pages/igroneCount/main">
-          <div class="box">真实无视计算</div>
-        </a>
+      <a href="../../pages/igroneCount/main">
+        <div class="box">真实无视计算</div>
+      </a>
       <a href="../../pages/arcresult/main">
         <div class="box">冒险岛神秘徽章计算</div>
       </a>
       <a href="../../pages/weaponback/main">
         <div class="box">逆推武器所砸的卷</div>
+      </a>
+      <a href="../../pages/register/main">
+        <div class="box">数据同步</div>
       </a>
       <a href="../../pages/about/main">
         <div class="box">关于我们</div>

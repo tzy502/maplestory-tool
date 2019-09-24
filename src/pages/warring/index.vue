@@ -19,35 +19,37 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {};
   },
 
   mounted: function() {
-
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    });
     var openId = wx.getStorageSync("openId");
     var code;
+    var token = wx.getStorageSync("token");
     wx.login({
       //获取code
 
       success: function(res) {
         code = res.code; //返回code
-        console.log(code);
+
         var code = {
           code: code
         };
+
         wx.request({
           url: "http://127.0.0.1:9333/api/base/openId",
           method: "Post",
           data: code,
-          headers: {
-            "content-type": "application/json" // 默认值
-          },
           success: function(res) {
             var data = res.data;
-            if (openId != data.data) {
+            token = data.data.token;
+            if (openId != data.data.openId) {
               wx.setStorage({
                 key: "openId",
                 data: data.data.openId,
@@ -64,24 +66,24 @@ export default {
                       "content-type": "application/json" // 默认值
                     },
                     success: function(res) {
-             
+                      token = res.data.data.token;
                     }
                   });
                 }
               });
-            }else{
-                 wx.setStorage({
-        key: "loin",
-        data: level,
-        success: function(res) {
-          console.log("异步保存等级成功");
-        }
-      });
             }
-      
+
+            wx.setStorage({
+              key: "token",
+              data: token,
+              success: function(res) {
+                console.log("token");
+
+                wx.hideLoading();
+              }
+            });
           }
         });
-
       }
     });
   }

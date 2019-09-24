@@ -1507,8 +1507,10 @@ export default {
   },
   mounted: function() {
     var list = wx.getStorageSync("list");
+  
     if (list != null && list != "") {
       this.list = list;
+      console.log(list[0])
     }
   },
   methods: {
@@ -1531,11 +1533,11 @@ export default {
         data: list,
         success: function(res) {
           console.log("异步保存装备信息成功");
-          wx.setStorage({
-            key: "haveDate",
-            data: "",
-            success: function(res) {}
-          });
+          // wx.setStorage({
+          //   key: "haveDate",
+          //   data: "1",
+          //   success: function(res) {}
+          // });
           conncent();
           mpvue.navigateTo({ url: "../../pages/result/main" });
         }
