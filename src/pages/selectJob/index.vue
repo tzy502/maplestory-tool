@@ -30,6 +30,10 @@ export default {
   mounted: function() {},
   methods: {
     avgent() {
+          wx.showLoading({
+      title: "加载中",
+      mask: true
+    });
       var haveDate = wx.getStorageSync("haveDate");
       if (haveDate == 1) {
         var avgent = wx.getStorageSync("avgent");
@@ -49,10 +53,15 @@ export default {
         success: function(res) {
           getItem(1);
           console.log("设置为复仇者职业");
+            wx.hideLoading();
         }
       });
     },
     xenon() {
+          wx.showLoading({
+      title: "加载中",
+      mask: true
+    });
       var haveDate = wx.getStorageSync("haveDate");
       if (haveDate == 1) {
         var avgent = wx.getStorageSync("avgent");
@@ -72,10 +81,15 @@ export default {
         success: function(res) {
           getItem(2);
           console.log("设置为尖兵");
+            wx.hideLoading();
         }
       });
     },
     normal() {
+          wx.showLoading({
+      title: "加载中",
+      mask: true
+    });
       var haveDate = wx.getStorageSync("haveDate");
       if (haveDate == 1) {
         var avgent = wx.getStorageSync("avgent");
@@ -95,6 +109,7 @@ export default {
         success: function(res) {
           getItem(0);
           console.log("设置为普通职业");
+            wx.hideLoading();
         }
       });
     }
