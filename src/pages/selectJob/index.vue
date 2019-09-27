@@ -35,9 +35,10 @@ export default {
       mask: true
     });
       var haveDate = wx.getStorageSync("haveDate");
+      console.log("缓存"+haveDate)
       if (haveDate == 1) {
         var avgent = wx.getStorageSync("avgent");
-        if (avgent != 0) {
+        if (avgent != 1) {
           wx.setStorage({
             key: "haveDate",
             data: "",
