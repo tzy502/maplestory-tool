@@ -21,9 +21,9 @@
         <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
         </a>
-        <a href="../../pages/line/main">
+        <!-- <a href="../../pages/line/main">
           <div class="box">冒险岛潜能收益折线图</div>
-        </a>
+        </a> -->
       </div>
       <a href="../../pages/igroneCount/main">
         <div class="box">真实无视计算</div>

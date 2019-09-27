@@ -120,6 +120,27 @@ var conncent = function () {
     damage = 0;
   }
   data.damage = damage;
+
+  var start = wx.getStorageSync("start");
+  if (start == null || start == "") {
+    start = 0;
+  }
+  data.start = start;
+  var black = wx.getStorageSync("black");
+  if (black == null || black == "") {
+    black = 0;
+  }
+  data.black = black;
+  var inside = wx.getStorageSync("damage");
+  if (inside == null || inside == "") {
+    inside = 0;
+  }
+  data.inside = inside;
+
+
+
+
+
   var method="Post"
   var haveDate = wx.getStorageSync("haveDate");
   console.log("haveDate"+haveDate)
@@ -153,7 +174,8 @@ var backendCount = function () {
       data: "",
       header: {
         'content-type': 'application/json' , 
-        'Authorization':wx.getStorageSync("token")
+        'Authorization':wx.getStorageSync("token"),
+        'avgent':wx.getStorageSync("avgent")
       },
       success: function (res) {
         var data = res.data
@@ -195,7 +217,8 @@ var barChange = function () {
       data: "",
       header: {
         'content-type': 'application/json', 
-        'Authorization':wx.getStorageSync("token")
+        'Authorization':wx.getStorageSync("token"),
+        'avgent':wx.getStorageSync("avgent")
       },
       success: function (res) {
         var data = res.data
@@ -215,7 +238,8 @@ var ignoreChange = function (igoneChange) {
       data: igoneChange,
       header: {
         "content-type": "application/json", 
-        'Authorization':wx.getStorageSync("token")
+        'Authorization':wx.getStorageSync("token"),
+        'avgent':wx.getStorageSync("avgent")
       },
       success: function (res) {
           resolve(res.data.data);

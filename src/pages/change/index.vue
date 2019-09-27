@@ -212,8 +212,10 @@ export default {
         url: "http://127.0.0.1:9333/api/analyse/equipChange",
         method: "Post",
         data: equipContrastList,
-        headers: {
-          "content-type": "application/json" // 默认值
+        header: {
+          'content-type': 'application/json' , 
+          'Authorization':wx.getStorageSync("token"),
+            'avgent':wx.getStorageSync("avgent")
         },
         success: function(res) {
           var data=res.data
@@ -223,8 +225,8 @@ export default {
               key: "changeList",
               data: data.data,
               success: function(res) {
-                var url = "../../pages/presult/main";
-                wx.navigateTo({ url });
+                // var url = "../../pages/presult/main";
+                wx.navigateTo({ url: "../../pages/presult/main" });
               }
             });
           }

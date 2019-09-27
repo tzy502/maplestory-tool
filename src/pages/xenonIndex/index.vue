@@ -15,7 +15,6 @@
         <a href="../../pages/xenonResult/main">
           <div class="box">具体属性比例</div>
         </a>
-
         <a href="../../pages/pselect/main">
           <div class="box">冒险岛潜能收益柱状图</div>
         </a>
