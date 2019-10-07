@@ -50,7 +50,9 @@ export default {
     mptoast,
     mpvuePicker
   },
-  mounted: function() {      this.igrone = wx.getStorageSync("igone");},
+  mounted: function() {     
+     this.igrone = wx.getStorageSync("igone");
+     },
   data() {
     return {
       igrone: "",

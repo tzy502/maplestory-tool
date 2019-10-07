@@ -23,6 +23,9 @@
         <p class="enter_input">{{day}}</p>
       </div>
     </div>
+        <div class="next_box">
+      <img src="/static/images/result.png" @click="count" class="next" background-size="cover" />
+    </div>
     <div class="cut"></div>
     <div class="first_box">
       <div class="litter_bule"></div>

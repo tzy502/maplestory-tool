@@ -4,7 +4,7 @@
     <!-- <p class="warring-content">测试版暂不支持无视计算</p> -->
     <div class="introduction">
       <!-- <button class="addLine" @click="onAdd">添加新一套配装</button>
-      <button class="addLine" @click="onReduce">去除最后一套配装</button>-->
+      <button class="addLine" @click="onReduce">去除最后一套配装</button> -->
       <div class="box" v-for="(item,i) of items" :key="i">
         <div class="suitName">
           <p class="suitName_title">配装名：</p>
