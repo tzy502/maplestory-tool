@@ -43,13 +43,15 @@ export default {
         };
 
         wx.request({
-          url: "http://127.0.0.1:9333/api/base/openId",
+          url: "http://maplestorytool.online:9333/api/base/openId",
           method: "Post",
           data: code,
           success: function(res) {
             var data = res.data;
             token = data.data.token;
-            if (openId != data.data.openId) {
+          console.log(data.data.userId)
+            if (data.data.userId==null||data.data.userId=="") {
+             
               wx.setStorage({
                 key: "openId",
                 data: data.data.openId,
@@ -59,7 +61,7 @@ export default {
                     openId: data.data.openId
                   };
                   wx.request({
-                    url: "http://127.0.0.1:9333/api/base/openidRegister",
+                    url: "http://maplestorytool.online:9333/api/base/openidRegister",
                     method: "Post",
                     data: openId,
                     headers: {

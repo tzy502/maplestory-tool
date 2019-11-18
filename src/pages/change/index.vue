@@ -209,7 +209,7 @@ export default {
         equipContrastList.push(items[i]);
       }
       wx.request({
-        url: "http://127.0.0.1:9333/api/analyse/equipChange",
+        url: "http://maplestorytool.online:9333/api/analyse/equipChange",
         method: "Post",
         data: equipContrastList,
         header: {

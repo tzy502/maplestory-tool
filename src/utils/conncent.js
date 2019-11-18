@@ -1,5 +1,5 @@
-// var host="www.maplestory-tool.com/api"
-var host = "127.0.0.1:9100/api"
+var host="http://maplestorytool.online:9333/api"
+// var host = "127.0.0.1:9100/api"
 var conncent = function () {
 
   var data = {
@@ -149,7 +149,7 @@ var conncent = function () {
   }
   var token=wx.getStorageSync("token");
   wx.request({
-    url: "http://127.0.0.1:9333/api/item",
+    url: "http://maplestorytool.online:9333/api/item",
     method: method,
     data: data,
     header: {
@@ -169,7 +169,7 @@ var conncent = function () {
 var backendCount = function () {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: "http://127.0.0.1:9333/api/analyse/result",
+      url: "http://maplestorytool.online:9333/api/analyse/result",
       method: 'Post',
       data: "",
       header: {
@@ -189,10 +189,10 @@ var backendCount = function () {
 }
 
 var loginOrRegister = function (baseUser) {
-  console.log(wx.getStorageSync("token"))
+  console.log("asd")
   return new Promise((resolve, reject) => {
     wx.request({
-      url: "http://127.0.0.1:9333/api/base/wechant/auth",
+      url: "http://maplestorytool.online:9333/api/base/wechant/auth",
       method: 'Post',
       data: baseUser,
       header: {
@@ -212,7 +212,7 @@ var loginOrRegister = function (baseUser) {
 var barChange = function () {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: "http://127.0.0.1:9333/api/analyse/barChange",
+      url: "http://maplestorytool.online:9333/api/analyse/barChange",
       method: 'Post',
       data: "",
       header: {
@@ -233,7 +233,7 @@ var barChange = function () {
 var ignoreChange = function (igoneChange) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: "http://127.0.0.1:9333/api/analyse/IgoneChange",
+      url: "http://maplestorytool.online:9333/api/analyse/IgoneChange",
       method: "Post",
       data: igoneChange,
       header: {
@@ -268,7 +268,7 @@ var ignoreChange = function (igoneChange) {
 var getItem = function (avgent) {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: "http://127.0.0.1:9333/api/item?avgent="+avgent,
+      url: "http://maplestorytool.online:9333/api/item?avgent="+avgent,
       method: "Get",
       data: avgent,
       header: {

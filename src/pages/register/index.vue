@@ -57,6 +57,7 @@
 import mptoast from "mptoast";
 import mpvuePicker from "mpvue-picker";
 import { loginOrRegister } from "../../utils/conncent.js";
+import { conncent } from "../../utils/conncent.js";
 export default {
   components: {
     mptoast,
@@ -100,6 +101,12 @@ export default {
       var Promise = loginOrRegister(baseUser);
       Promise.then(res => {
         this.$mptoast("注册成功", "success", "2");
+        conncent();
+
+
+
+
+
         mpvue.navigateTo({ url: "../../pages/warring/main" });
       });
     }
