@@ -189,7 +189,6 @@ var backendCount = function () {
 }
 
 var loginOrRegister = function (baseUser) {
-  console.log("asd")
   return new Promise((resolve, reject) => {
     wx.request({
       url: "http://maplestorytool.online:9333/api/base/wechant/auth",

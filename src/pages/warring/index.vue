@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { conncent } from "../../utils/conncent.js";
 export default {
   data() {
     return {};
@@ -28,7 +29,7 @@ export default {
     wx.showLoading({
       title: "加载中",
       mask: true
-    }); 
+    });
     var openId = wx.getStorageSync("openId");
     var code;
     var token = wx.getStorageSync("token");
@@ -49,9 +50,8 @@ export default {
           success: function(res) {
             var data = res.data;
             token = data.data.token;
-          console.log(data.data.userId)
-            if (data.data.userId==null||data.data.userId=="") {
-             
+
+            if (data.data.userId == null || data.data.userId == "") {
               wx.setStorage({
                 key: "openId",
                 data: data.data.openId,
@@ -61,7 +61,8 @@ export default {
                     openId: data.data.openId
                   };
                   wx.request({
-                    url: "http://maplestorytool.online:9333/api/base/openidRegister",
+                    url:
+                      "http://maplestorytool.online:9333/api/base/openidRegister",
                     method: "Post",
                     data: openId,
                     headers: {
@@ -69,6 +70,10 @@ export default {
                     },
                     success: function(res) {
                       token = res.data.data.token;
+                      var haveDate = wx.getStorageSync("haveDate");
+                      if (haveDate == 1) {
+                       conncent()
+                      }
                     }
                   });
                 }
@@ -79,8 +84,6 @@ export default {
               key: "token",
               data: token,
               success: function(res) {
-                console.log("token");
-
                 wx.hideLoading();
               }
             });

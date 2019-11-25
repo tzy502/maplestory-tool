@@ -10,10 +10,10 @@
         <p class="enter_title">账号:</p>
         <input type="text" class="enter_input" v-model="account" placeholder="请输入账号" />
       </div>
-      <div class="enter">
+      <!-- <div class="enter">
         <p class="enter_title">用户名:</p>
         <input type="text" class="enter_input" v-model="name" placeholder="请输入用户名" />
-      </div>
+      </div>-->
       <div class="enter">
         <p class="enter_title">密码:</p>
         <input
@@ -46,7 +46,8 @@
         <p class="warring-content">2、默认与微信绑定</p>
         <p class="warring-content">3、第一次登录视为注册</p>
         <p class="warring-content">4、因为本程序没有重要数据，密码仅为简单加密，请务必不要使用常用密码，以防被撞库</p>
-        <p class="warring-content">5、密码丢失请到B站冒险岛交流群（957018793）或者b站龙胶水处反馈</p>
+        <p class="warring-content">5、如果同时微信端与网页端都有数据，同步后以微信端为准</p>
+        <p class="warring-content">6、密码丢失请到B站冒险岛交流群（957018793）或者b站龙胶水处反馈</p>
       </div>
     </div>
     <mptoast />
@@ -87,11 +88,11 @@ export default {
       var repeatPassword = this.repeatPassword;
       if (password == null || password == "") {
         this.$mptoast("请填写密码", "error", "1");
-         return ;
+        return;
       }
       if (password != repeatPassword) {
         this.$mptoast("两次密码不一致", "error", "1");
-        return ;
+        return;
       }
       var baseUser = {
         account: account,
@@ -101,12 +102,12 @@ export default {
       var Promise = loginOrRegister(baseUser);
       Promise.then(res => {
         this.$mptoast("注册成功", "success", "2");
-        conncent();
+        wx.getStorageSync("avgent");
 
-
-
-
-
+        var haveDate = wx.getStorageSync("haveDate");
+        if (haveDate == 1) {
+          conncent();
+        }
         mpvue.navigateTo({ url: "../../pages/warring/main" });
       });
     }
